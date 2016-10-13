@@ -22,6 +22,12 @@ public class PowerUpsScript : MonoBehaviour {
     float[] puPlaceArray;
     float puPlace;
 
+    string[] texturesNames;
+    string currTexture;
+    public int numEachTexture;
+    ShuffleBag shuffleBagTexture;
+
+
     void Awake()
     {
         // put all power ups + nothing in an array
@@ -35,6 +41,10 @@ public class PowerUpsScript : MonoBehaviour {
                 nothingPath = pu;
             }
         }
+        // put all textures in an array
+        dir = new DirectoryInfo("Assets/Resources/Textures");
+        FileInfo[] infoTex = dir.GetFiles("*.jpg");
+        texturesNames = infoTex.Select(f => f.FullName).ToArray();
 
         mesh = GetComponent<MeshFilter>().mesh;
         puPlaceArray = new float[3] { 0, mesh.bounds.size.x / 4, -mesh.bounds.size.x / 4 };
@@ -42,8 +52,13 @@ public class PowerUpsScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        // choose a power up from the shuffle bag
+        // assign a straight or turn texture
         numEachPowerUp = 2;
+        shuffleBagTexture = new ShuffleBag(texturesNames.Length);
+        AssignTexture();
+
+        // choose a power up from the shuffle bag
+        numEachTexture = 3;
         shuffleBag = new ShuffleBag(powerUpNames.Length);
         ChoosePowerUp();
 
@@ -75,5 +90,20 @@ public class PowerUpsScript : MonoBehaviour {
 
         chosenOne = shuffleBag.Next().Split('\\').Last().Split('.')[0];
         Debug.Log("Chosen PowerUp: " + chosenOne);
+    }
+
+    void AssignTexture()
+    {
+        foreach (string tex in texturesNames)
+        {
+            amount = 3 + Array.IndexOf(texturesNames, tex) * numEachTexture; // starting with 3 each, variate frequency of power up appearance
+            Debug.Log(amount);
+
+            shuffleBagTexture.Add(tex, amount);
+        }
+        Debug.Log(shuffleBagTexture);
+        currTexture = shuffleBagTexture.Next().Split('\\').Last().Split('.')[0];
+        this.GetComponent<Renderer>().material.SetTexture("_MainTex",
+             (Texture)Resources.Load("Textures/" + currTexture));
     }
 }
