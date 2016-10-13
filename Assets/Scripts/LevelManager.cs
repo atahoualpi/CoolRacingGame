@@ -54,7 +54,6 @@ public class LevelManager : MonoBehaviour {
             GameObject Block = Blocks[(int)Random.Range(0, 3)];
             Block.transform.position = new Vector3(0, 0, i * 100 + forward + (Racer.transform.position.z - (float) Racer.transform.position.z % 100.0f));
             Block.transform.Rotate(new Vector3(0, ((int)Random.Range(0, 4)) * 90, 0));
-            Debug.Log(Block.transform.position.z);
             Instantiate(Block);
         }
     }
