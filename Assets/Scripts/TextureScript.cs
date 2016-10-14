@@ -27,7 +27,9 @@ public class TextureScript : MonoBehaviour
         FileInfo[] infoTex = dir.GetFiles("*.jpg");
         texturesNames = infoTex.Select(f => f.FullName).ToArray();
 
+        //mesh = transform.FindChild("Cube").transform.GetComponent<MeshFilter>().mesh;
         mesh = GetComponent<MeshFilter>().mesh;
+
     }
     // Use this for initialization
     void Start()

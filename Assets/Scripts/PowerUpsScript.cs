@@ -35,8 +35,16 @@ public class PowerUpsScript : MonoBehaviour {
                 nothingPath = pu;
             }
         }
+        if(this.name == "line(Clone)")
+        {
+            mesh = GetComponent<MeshFilter>().mesh;
+        }
+        else
+        {
+            mesh = transform.FindChild("Cube").transform.GetComponent<MeshFilter>().mesh;
 
-        mesh = GetComponent<MeshFilter>().mesh;
+        }
+
         puPlaceArray = new float[3] { 0, mesh.bounds.size.x / 4, -mesh.bounds.size.x / 4 };
     }
     // Use this for initialization
