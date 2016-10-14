@@ -11,6 +11,8 @@ public class LevelConstructor : MonoBehaviour {
     Block[,] Blocks;
     public int Gridsize;
     public int lapLength;
+    public int lapLengthMin;
+    public bool established;
 
     System.Random random = new System.Random();
 
@@ -37,7 +39,7 @@ public class LevelConstructor : MonoBehaviour {
     // Use this for initialization
 
     void Awake() {
-        lapLength = 0;
+        established = false;
         Blocks = new Block[Gridsize, Gridsize];
 
         for(int i = 0; i < Gridsize; i++) {
@@ -123,11 +125,12 @@ public class LevelConstructor : MonoBehaviour {
     void Start () {
 
         makeLevel();
+        createBlocks();
     }
 
     void makeLevel() {
         foreach (Transform child in this.transform) {
-            GameObject.Destroy(child.gameObject);
+            Destroy(child.gameObject);
         }
         for (int i = 0; i < Gridsize; i++) {
             for (int j = 0; j < Gridsize; j++) {
@@ -139,10 +142,14 @@ public class LevelConstructor : MonoBehaviour {
         endPoint = startPoint - upV;
         lapLength = 0;
         nextBlock(startPoint + upV, getOppDir("up"));
-        if(lapLength < 12) {
+        if(lapLength < lapLengthMin) {
             makeLevel();
             return;
         }
+        
+    }
+
+    void createBlocks() {
         for (int i = 0; i < Gridsize; i++) {
             for (int j = 0; j < Gridsize; j++) {
                 Vec2i p = new Vec2i(i, j);
@@ -161,7 +168,6 @@ public class LevelConstructor : MonoBehaviour {
                 }
             }
         }
-        
     }
     
     Block getBlock(Vec2i p) {
@@ -188,7 +194,7 @@ public class LevelConstructor : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         if (Input.GetMouseButtonDown(0)) {
-            makeLevel();
+            Start();
         }
 	}
 
