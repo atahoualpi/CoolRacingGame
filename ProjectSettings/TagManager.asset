@@ -9,6 +9,7 @@ TagManager:
   - ActualVehicle
   - BoostItem
   - ItemCollider
+  - GoalPoint
   layers:
   - Default
   - TransparentFX
