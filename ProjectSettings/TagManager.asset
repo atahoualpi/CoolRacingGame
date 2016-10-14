@@ -10,7 +10,8 @@ TagManager:
   - BoostItem
   - ItemCollider
   - GoalPoint
-  - Route
+  - Entry
+  - Exit
   layers:
   - Default
   - TransparentFX

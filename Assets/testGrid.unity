@@ -253,6 +253,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Gridsize: 7
   lapLength: 0
+  lapLengthMin: 20
+  established: 0
 --- !u!4 &911677037
 Transform:
   m_ObjectHideFlags: 0
