@@ -204,9 +204,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64f6ca51ed4bba64690036b734ed6302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gridsize: 20
+  Gridsize: 7
   lapLength: 0
-  lapLengthMin: 200
+  lapLengthMin: 20
+  established: 0
 --- !u!4 &911677037
 Transform:
   m_ObjectHideFlags: 0
