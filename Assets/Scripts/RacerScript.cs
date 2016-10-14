@@ -4,30 +4,64 @@ using UnityEngine.SceneManagement;
 
 public class RacerScript : MonoBehaviour {
 
-    private float topForwardSpeed = 2.0f;
+    private float topForwardSpeed = 0.20f;
     private float topStrafeSpeed = 1.0f;
     public bool isDead = false;
     //private float count = 0;
     public int jumps = 0;
     private float yVel = 0;
+    private float zVel = 0;
+    private float currentRot = 0;
     private float yAcc;
     private bool flying = false;
     private bool boosting = false;
     private float boostSpeed;
     private float boostTime;
-    GameObject cameraObject;
+    public GameObject cameraObject;
     private bool isFalling;
+    public Rigidbody rb;
 
 
 
     // Use this for initialization
     void Awake () {
-        cameraObject = this.transform.Find("Main Camera").gameObject;
+        //cameraObject = this.transform.Find("Main Camera").gameObject;
     }
-	
-	// Update is called once per frame
-	void Update () {
-        transform.Translate(0, 0, topForwardSpeed);
+
+    // Update is called once per frame
+    void Update() {
+        //transform.Translate(0, 0, topForwardSpeed);
+        if (Input.GetKey("up")) {
+            if (zVel < 5) {
+                zVel += 0.2f;
+                rb.velocity = transform.forward * zVel;
+            }
+        }
+        else {
+            if (zVel > 0) {
+                zVel -= 0.2f;
+                rb.velocity = transform.forward * zVel;
+            }
+        }
+
+
+
+
+        transform.Rotate(0, 2, 0);
+
+
+        if (Input.GetKey("right")) {
+            transform.Rotate(0, 0.3f * zVel, 0);
+        }
+
+        if (Input.GetKey("left")) {
+            transform.Rotate(0, 0.3f * zVel, 0);
+        }
+
+        //transform.eulerAngles = new Vector3(0, 30 * Input.GetAxis("Horizontal"), 0);
+
+
+
         if (!isDead)
         {
             /////////////////////////////////
@@ -89,7 +123,7 @@ public class RacerScript : MonoBehaviour {
             //Turning
             /////////////////////////////////
 
-            transform.Translate(topStrafeSpeed * Input.GetAxis("Horizontal"), 0, 0);
+            //transform.Translate(topStrafeSpeed * Input.GetAxis("Horizontal"), 0, 0);
             if (Input.GetButtonDown("Fire2"))
                 Debug.Log(Input.GetButtonDown("Fire2"));
 

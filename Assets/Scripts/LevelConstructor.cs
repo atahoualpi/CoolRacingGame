@@ -156,14 +156,14 @@ public class LevelConstructor : MonoBehaviour {
                 if (p.Equals(startPoint)) {
                     GameObject s = Instantiate(Resources.Load("startCube")) as GameObject;
                     s.transform.SetParent(this.transform);
-                    s.transform.position = new Vector3(i, 0, j);
+                    s.transform.position = new Vector3(i*10, 0, j*10);
                 }
                 else if (getBlock(p).Entry != "null") {
                     //Debug.Log(getBlock(p).Entry + getBlock(p).Exit);
                     s = Instantiate(chunks[getBlock(p).Entry + getBlock(p).Exit]);
                     s.GetComponent<BlockObj>().set(getBlock(p).Entry + getBlock(p).Exit);
                     s.transform.eulerAngles = new Vector3(0, chunksRot[getBlock(p).Entry + getBlock(p).Exit], 0);
-                    s.transform.position = new Vector3(i, 0, j);
+                    s.transform.position = new Vector3(i*10, 0, j*10);
                     s.transform.SetParent(this.transform);
                 }
             }
