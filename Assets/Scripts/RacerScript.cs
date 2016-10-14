@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class RacerScript : MonoBehaviour {
 
@@ -133,7 +134,7 @@ public class RacerScript : MonoBehaviour {
             }
 
             if ((Input.GetKeyDown("space") || Input.GetButtonDown("Fire2")))
-                Application.LoadLevel("DefaultScene");
+                SceneManager.LoadScene("DefaultScene");
         }
 
 
