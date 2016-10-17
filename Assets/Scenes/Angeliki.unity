@@ -236,6 +236,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wayPointList: []
+  wayPointList_list: []
+  points: []
   currentWayPoint: 0
   targetWayPoint: {fileID: 2120854575}
   speed: 4
