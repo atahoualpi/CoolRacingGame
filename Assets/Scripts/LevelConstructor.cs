@@ -137,7 +137,7 @@ public class LevelConstructor : MonoBehaviour {
                 Blocks[i, j] = new Block(i, j, "null", "null");
             }
         }
-        startPoint = new Vec2i(1, 1);
+        startPoint = new Vec2i(3, 3);
         setBlock(startPoint, "down", "up");
         endPoint = startPoint - upV;
         lapLength = 0;
