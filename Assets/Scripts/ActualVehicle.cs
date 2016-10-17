@@ -22,7 +22,7 @@ public class ActualVehicle : MonoBehaviour {
     void Update () {
 
         Quaternion newRotation = Quaternion.AngleAxis(-30 * Input.GetAxis("Horizontal"), Vector3.forward);
-        transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, rotateSpeed);
+        transform.localRotation = Quaternion.Slerp(transform.localRotation, newRotation, rotateSpeed);
    
     }
 

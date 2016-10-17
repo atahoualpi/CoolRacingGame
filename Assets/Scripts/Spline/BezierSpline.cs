@@ -255,4 +255,5 @@ public class BezierSpline : MonoBehaviour
             return (points.Length - 1) / 3;
         }
     }
+
 }

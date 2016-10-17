@@ -6,8 +6,8 @@ public class wayPointsFuncs : MonoBehaviour
     {
         // Create a path and set it based on a target position.
         NavMeshPath path = new NavMeshPath();
-        if (nav.enabled)
-            nav.CalculatePath(targetPosition, path);
+        //if (nav.enabled)
+        //    nav.CalculatePath(targetPosition, path);
 
         // Create an array of points which is the length of the number of corners in the path + 2.
         Vector3[] allWayPoints = new Vector3[path.corners.Length + 2];
@@ -38,9 +38,9 @@ public class wayPointsFuncs : MonoBehaviour
 
     void Patrol()
     {
-        foreach (Transform path in patrolWayPoints)
-        {
-            nav.SetDestination(path.position);
-        }
+        //foreach (Transform path in patrolWayPoints)
+        //{
+        //    nav.SetDestination(path.position);
+        //}
     }
 }

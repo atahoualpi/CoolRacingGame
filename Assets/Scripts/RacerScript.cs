@@ -28,35 +28,96 @@ public class RacerScript : MonoBehaviour {
         //cameraObject = this.transform.Find("Main Camera").gameObject;
     }
 
-    // Update is called once per frame
-    void Update() {
+    void FixedUpdate() {
         //transform.Translate(0, 0, topForwardSpeed);
+        //Vector3 fwd = transform.forward;
+        //if (Input.GetKey("up")) {
+        //    if (zVel < 6) {
+        //        zVel += 0.2f;
+
+        //    }
+        //    rb.velocity = fwd * zVel;
+
+        //}
+        //else {
+        //    if (zVel > 0) {
+        //        zVel -= 0.2f;
+        //        rb.velocity = fwd * zVel;
+        //    }
+        //}
+
+        //if (Input.GetKey("down")) {
+        //    if (zVel > -2) {
+        //        zVel -= 0.2f;
+
+        //    }
+        //    rb.velocity = fwd * zVel;
+
+        //}
+        //else {
+        //    if (zVel < 0) {
+        //        zVel += 0.2f;
+        //    }
+        //    rb.velocity = fwd * zVel;
+
+        //}
+        Vector3 fwd = transform.forward;
         if (Input.GetKey("up")) {
-            if (zVel < 5) {
-                zVel += 0.2f;
-                rb.velocity = transform.forward * zVel;
+            if (rb.velocity.z < 50) {
+
             }
+            rb.AddRelativeForce(0, 0, 10);
+
+            //rb.velocity = fwd * zVel;
+
         }
         else {
-            if (zVel > 0) {
-                zVel -= 0.2f;
-                rb.velocity = transform.forward * zVel;
-            }
+            //if (zVel > 0) {
+            //    zVel -= 0.2f;
+            //    rb.velocity = fwd * zVel;
+            //}
         }
 
+        if (Input.GetKey("down")) {
+            if (zVel > -2) {
+                zVel -= 0.2f;
 
+            }
+            rb.velocity = fwd * zVel;
 
+        }
+        //else {
+        //    if (zVel < 0) {
+        //        zVel += 0.2f;
+        //    }
+        //    rb.velocity = fwd * zVel;
 
-        transform.Rotate(0, 2, 0);
-
+        //}
 
         if (Input.GetKey("right")) {
-            transform.Rotate(0, 0.3f * zVel, 0);
+            transform.Rotate(0, 0.3f * rb.velocity.magnitude, 0);
         }
 
         if (Input.GetKey("left")) {
-            transform.Rotate(0, 0.3f * zVel, 0);
+            transform.Rotate(0, -0.3f * rb.velocity.magnitude, 0);
         }
+        Debug.Log(rb.velocity.z);
+    }
+
+
+    // Update is called once per frame
+    void Update() {
+
+
+
+
+
+        //transform.Rotate(0, 2, 0);
+
+
+
+
+
 
         //transform.eulerAngles = new Vector3(0, 30 * Input.GetAxis("Horizontal"), 0);
 

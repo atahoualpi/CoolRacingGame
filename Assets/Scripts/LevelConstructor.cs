@@ -13,13 +13,14 @@ public class LevelConstructor : MonoBehaviour {
     public int lapLength;
     public int lapLengthMin;
     public bool established;
-
+    public float gridScale;
     System.Random random = new System.Random();
 
     Vec2i startPoint;
     Vec2i endPoint;
 
     List<Vec2i> dirs;
+    List<Vector3> splinePoints;
     Vec2i upV;
     Vec2i downV;
     Vec2i leftV;
@@ -42,16 +43,16 @@ public class LevelConstructor : MonoBehaviour {
         established = false;
         Blocks = new Block[Gridsize, Gridsize];
 
-        for(int i = 0; i < Gridsize; i++) {
+        for (int i = 0; i < Gridsize; i++) {
             for (int j = 0; j < Gridsize; j++) {
-                Blocks[i, j] = new Block(i,j,"null","null");
+                Blocks[i, j] = new Block(i, j, "null", "null");
             }
         }
-        upV    =  new Vec2i( 0,  1);
-        downV  =  new Vec2i( 0, -1);
-        leftV  =  new Vec2i(-1,  0);
-        rightV =  new Vec2i( 1,  0);
-        dirs = new List<Vec2i>() {upV, downV, leftV, rightV};
+        upV = new Vec2i(0, 1);
+        downV = new Vec2i(0, -1);
+        leftV = new Vec2i(-1, 0);
+        rightV = new Vec2i(1, 0);
+        dirs = new List<Vec2i>() { upV, downV, leftV, rightV };
         chunks = new Dictionary<String, GameObject>();
         chunksRot = new Dictionary<String, float>();
 
@@ -122,13 +123,14 @@ public class LevelConstructor : MonoBehaviour {
     }
 
 
-    void Start () {
+    void Start() {
 
         makeLevel();
         createBlocks();
     }
 
     void makeLevel() {
+        splinePoints = new List<Vector3>();
         foreach (Transform child in this.transform) {
             Destroy(child.gameObject);
         }
@@ -138,44 +140,52 @@ public class LevelConstructor : MonoBehaviour {
             }
         }
         startPoint = new Vec2i(3, 3);
+        splinePoints.Add(new Vector3(startPoint.x * gridScale, 0, startPoint.y * gridScale));
         setBlock(startPoint, "down", "up");
         endPoint = startPoint - upV;
         lapLength = 0;
         nextBlock(startPoint + upV, getOppDir("up"));
-        if(lapLength < lapLengthMin) {
+        if (lapLength < lapLengthMin) {
             makeLevel();
             return;
         }
-        
+
     }
 
     void createBlocks() {
+        splinePoints.Add(new Vector3(startPoint.x * gridScale, 0, startPoint.y * gridScale));
+
+        foreach(Vector3 v in splinePoints){
+            //Debug.Log(v.x + " " + v.z);
+        }
         for (int i = 0; i < Gridsize; i++) {
             for (int j = 0; j < Gridsize; j++) {
                 Vec2i p = new Vec2i(i, j);
                 if (p.Equals(startPoint)) {
                     GameObject s = Instantiate(Resources.Load("startCube")) as GameObject;
                     s.transform.SetParent(this.transform);
-                    s.transform.position = new Vector3(i*10, 0, j*10);
+                    //s.transform.localScale = new Vector3(10, 10, 10);
+                    s.transform.position = new Vector3(i * gridScale, 0, j * gridScale);
                 }
                 else if (getBlock(p).Entry != "null") {
                     //Debug.Log(getBlock(p).Entry + getBlock(p).Exit);
                     s = Instantiate(chunks[getBlock(p).Entry + getBlock(p).Exit]);
                     s.GetComponent<BlockObj>().set(getBlock(p).Entry + getBlock(p).Exit);
                     s.transform.eulerAngles = new Vector3(0, chunksRot[getBlock(p).Entry + getBlock(p).Exit], 0);
-                    s.transform.position = new Vector3(i*10, 0, j*10);
+                    //s.transform.localScale = new Vector3(10, 10, 10);
+                    s.transform.position = new Vector3(i * gridScale, 0, j * gridScale);
                     s.transform.SetParent(this.transform);
                 }
             }
         }
     }
-    
+
     Block getBlock(Vec2i p) {
         return Blocks[p.x, p.y];
     }
-    void setBlock (Vec2i p, String en, String ex) {
+    void setBlock(Vec2i p, String en, String ex) {
         //Debug.Log(p.x + " " + p.y);
-        Blocks[p.x, p.y] = new Block(p.x, p.y, en, ex); 
+        Blocks[p.x, p.y] = new Block(p.x, p.y, en, ex);
     }
 
     String getDir(Vec2i p) {
@@ -192,16 +202,17 @@ public class LevelConstructor : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update() {
         if (Input.GetMouseButtonDown(0)) {
             Start();
         }
-	}
+    }
 
     void nextBlock(Vec2i curPos, String entry) {
         lapLength++;
-        if(curPos.Equals(endPoint)) {
-            setBlock(curPos, entry, getOppDir( getBlock(startPoint).Entry));
+        if (curPos.Equals(endPoint)) {
+            setBlock(curPos, entry, getOppDir(getBlock(startPoint).Entry));
+            splinePoints.Add(new Vector3(curPos.x * gridScale, 0, curPos.y * gridScale));
             return;
         }
         potDirs = getPotDirs(curPos);
@@ -209,7 +220,7 @@ public class LevelConstructor : MonoBehaviour {
             makeLevel();
             return;
         }
-
+        splinePoints.Add(new Vector3(curPos.x * gridScale, 0, curPos.y * gridScale));
         int r = random.Next(potDirs.Count);
         setBlock(curPos, entry, getDir(potDirs[r]));
 
@@ -220,13 +231,13 @@ public class LevelConstructor : MonoBehaviour {
         List<Vec2i> tempD = new List<Vec2i>();
         foreach (Vec2i d in dirs) {
             Vec2i potPos = curPos + d;
-            if(potPos.x < 0 || potPos.y < 0 || potPos.x >= Gridsize || potPos.y >= Gridsize) {
+            if (potPos.x < 0 || potPos.y < 0 || potPos.x >= Gridsize || potPos.y >= Gridsize) {
                 continue;
             }
             if (getBlock(potPos).Entry != "null") {
                 continue;
             }
-            if(potPos.Equals(endPoint)) {
+            if (potPos.Equals(endPoint)) {
                 tempD = new List<Vec2i>() { d };
                 break;
             }
@@ -236,7 +247,7 @@ public class LevelConstructor : MonoBehaviour {
     }
 
     String getOppDir(String dir) {
-        if      (dir == "up")
+        if (dir == "up")
             return "down";
         else if (dir == "down")
             return "up";
