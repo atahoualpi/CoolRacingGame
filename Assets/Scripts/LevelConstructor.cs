@@ -20,7 +20,7 @@ public class LevelConstructor : MonoBehaviour {
     Vec2i endPoint;
 
     List<Vec2i> dirs;
-    List<Vector3> splinePoints;
+    public List<Vector3> splinePoints;
     Vec2i upV;
     Vec2i downV;
     Vec2i leftV;
@@ -120,13 +120,14 @@ public class LevelConstructor : MonoBehaviour {
         chunks.Add("rightdown", rightdown);
         chunksRot.Add("rightdown", -90);
 
+        makeLevel();
+        createBlocks();
     }
 
 
     void Start() {
 
-        makeLevel();
-        createBlocks();
+       
     }
 
     void makeLevel() {
@@ -140,7 +141,7 @@ public class LevelConstructor : MonoBehaviour {
             }
         }
         startPoint = new Vec2i(3, 3);
-        splinePoints.Add(new Vector3(startPoint.x * gridScale, 0, startPoint.y * gridScale));
+        splinePoints.Add(new Vector3(startPoint.x * gridScale, 0.5f, startPoint.y * gridScale));
         setBlock(startPoint, "down", "up");
         endPoint = startPoint - upV;
         lapLength = 0;
@@ -153,7 +154,7 @@ public class LevelConstructor : MonoBehaviour {
     }
 
     void createBlocks() {
-        splinePoints.Add(new Vector3(startPoint.x * gridScale, 0, startPoint.y * gridScale));
+        splinePoints.Add(new Vector3(startPoint.x * gridScale, 0.5f, startPoint.y * gridScale));
 
         foreach(Vector3 v in splinePoints){
             //Debug.Log(v.x + " " + v.z);
@@ -212,7 +213,7 @@ public class LevelConstructor : MonoBehaviour {
         lapLength++;
         if (curPos.Equals(endPoint)) {
             setBlock(curPos, entry, getOppDir(getBlock(startPoint).Entry));
-            splinePoints.Add(new Vector3(curPos.x * gridScale, 0, curPos.y * gridScale));
+            splinePoints.Add(new Vector3(curPos.x * gridScale, 0.5f, curPos.y * gridScale));
             return;
         }
         potDirs = getPotDirs(curPos);
@@ -220,7 +221,7 @@ public class LevelConstructor : MonoBehaviour {
             makeLevel();
             return;
         }
-        splinePoints.Add(new Vector3(curPos.x * gridScale, 0, curPos.y * gridScale));
+        splinePoints.Add(new Vector3(curPos.x * gridScale, 0.5f, curPos.y * gridScale));
         int r = random.Next(potDirs.Count);
         setBlock(curPos, entry, getDir(potDirs[r]));
 

@@ -6,14 +6,11 @@ public class WayPointsScript : MonoBehaviour
 {
 
     // put the points from unity interface
-    public Vector3[] wayPointList;
     public List<Vector3> wayPointList_list = new List<Vector3>();
 
-    public Vector3[] points;
     Vector3 startPos;
 
-    GameObject bezier;
-
+    public GameObject level;
 
     public int currentWayPoint = 0;
     public Transform targetWayPoint;
@@ -24,23 +21,11 @@ public class WayPointsScript : MonoBehaviour
     void Start()
     {
         // put the points you want in this variable (points)
-        bezier = GameObject.Find("BezierSpline");
-        points = bezier.GetComponent<BezierSpline>().points;
+        //level = GameObject.Find("LevelManger");
+        wayPointList_list = level.GetComponent<LevelConstructor>().splinePoints;
 
-        wayPointList = points;
-        startPos = wayPointList[0];
+        startPos = wayPointList_list[0];
         targetWayPoint.position = startPos;
-        for (int i = 0; i < wayPointList.Length; i++)
-        {
-            wayPointList_list.Add(wayPointList[i]);
-        }
-        startPos = wayPointList[0];
-        //wayPointList_list.Add(new Vector3(2f, 0 , 0));
-        //wayPointList_list.Add(new Vector3(2f, 0, 2f));
-        //wayPointList_list.Add(new Vector3(4f, 0, 2f));
-
-        // also add the startpoint as end point
-        wayPointList_list.Add(startPos);
     }
 
     // Update is called once per frame
@@ -63,17 +48,30 @@ public class WayPointsScript : MonoBehaviour
         // move towards the target
         transform.position = Vector3.MoveTowards(transform.position, targetWayPoint.position, speed * Time.deltaTime);
 
-        if (transform.position == targetWayPoint.position)
+        //if (transform.position == targetWayPoint.position)
+        //{
+        //    currentWayPoint++;
+        //    if(currentWayPoint < wayPointList_list.Count)
+        //    {
+        //        targetWayPoint.position = wayPointList_list[currentWayPoint];
+        //    }
+        //    else
+        //    {
+        //        Debug.Log("You reached the goal!?!?");
+        //    }
+        //}
+    }
+
+    public void EnteredTrigger()
+    {
+        currentWayPoint++;
+        if (currentWayPoint < wayPointList_list.Count)
         {
-            currentWayPoint++;
-            if(currentWayPoint < wayPointList_list.Count)
-            {
-                targetWayPoint.position = wayPointList_list[currentWayPoint];
-            }
-            else
-            {
-                Debug.Log("You reached the goal!?!?");
-            }
+            targetWayPoint.position = wayPointList_list[currentWayPoint];
+        }
+        else
+        {
+            Debug.Log("You reached the goal!?!?");
         }
     }
 }
