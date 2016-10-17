@@ -12,6 +12,7 @@ TagManager:
   - GoalPoint
   - Entry
   - Exit
+  - centerCol
   layers:
   - Default
   - TransparentFX
