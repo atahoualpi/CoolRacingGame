@@ -63,9 +63,9 @@ public class RacerScript : MonoBehaviour {
         //}
         Vector3 fwd = transform.forward;
         if (Input.GetKey("up")) {
-            if (rb.velocity.z < 50) {
+            //if (rb.velocity.z < 50) {
 
-            }
+            //}
             rb.AddRelativeForce(0, 0, 10);
 
             //rb.velocity = fwd * zVel;
@@ -101,7 +101,7 @@ public class RacerScript : MonoBehaviour {
         if (Input.GetKey("left")) {
             transform.Rotate(0, -0.3f * rb.velocity.magnitude, 0);
         }
-        Debug.Log(rb.velocity.z);
+        //Debug.Log(rb.velocity.z);
     }
 
 
