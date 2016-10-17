@@ -9,7 +9,7 @@ public class OpponentScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         nav = GetComponent<NavMeshAgent>();
-        goal = GameObject.FindWithTag("Route").transform;
+        goal = GameObject.FindWithTag("GoalPoint").transform;
       
         Drive(goal.position);
     }
@@ -21,6 +21,6 @@ public class OpponentScript : MonoBehaviour {
 
     void Drive(Vector3 goalPos)
     {
-        //nav.SetDestination(goalPos);
+        nav.SetDestination(goalPos);
     }
 }
