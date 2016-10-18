@@ -62,49 +62,50 @@ public class RacerScript : MonoBehaviour {
         //    rb.velocity = fwd * zVel;
 
         //}
-        Vector3 fwd = transform.forward;
-        if (Input.GetKey("up")) {
-            //if (rb.velocity.z < 50) {
+        if (controllable) {
+            Vector3 fwd = transform.forward;
+            if (Input.GetKey("up")) {
+                //if (rb.velocity.z < 50) {
 
-            //}
-            rb.AddRelativeForce(0, 0, 10);
+                //}
+                rb.AddRelativeForce(0, 0, 10);
 
-            //rb.velocity = fwd * zVel;
-
-        }
-        else {
-            //if (zVel > 0) {
-            //    zVel -= 0.2f;
-            //    rb.velocity = fwd * zVel;
-            //}
-        }
-
-        if (Input.GetKey("down")) {
-            if (zVel > -2) {
-                zVel -= 0.2f;
+                //rb.velocity = fwd * zVel;
 
             }
-            rb.velocity = fwd * zVel;
+            else {
+                //if (zVel > 0) {
+                //    zVel -= 0.2f;
+                //    rb.velocity = fwd * zVel;
+                //}
+            }
 
+            if (Input.GetKey("down")) {
+                if (zVel > -2) {
+                    zVel -= 0.2f;
+
+                }
+                rb.velocity = fwd * zVel;
+
+            }
+            //else {
+            //    if (zVel < 0) {
+            //        zVel += 0.2f;
+            //    }
+            //    rb.velocity = fwd * zVel;
+
+            //}
+
+            //if (Input.GetKey("right")) {
+            //    transform.Rotate(0, 0.3f * rb.velocity.magnitude, 0);
+            //}
+
+            //if (Input.GetKey("left")) {
+            //    transform.Rotate(0, -0.3f * rb.velocity.magnitude, 0);
+            //}
+
+            transform.Rotate(0, 0.3f * rb.velocity.magnitude * Input.GetAxis("Horizontal"), 0);
         }
-        //else {
-        //    if (zVel < 0) {
-        //        zVel += 0.2f;
-        //    }
-        //    rb.velocity = fwd * zVel;
-
-        //}
-
-        //if (Input.GetKey("right")) {
-        //    transform.Rotate(0, 0.3f * rb.velocity.magnitude, 0);
-        //}
-
-        //if (Input.GetKey("left")) {
-        //    transform.Rotate(0, -0.3f * rb.velocity.magnitude, 0);
-        //}
-
-        transform.Rotate(0, 0.3f * rb.velocity.magnitude * Input.GetAxis("Horizontal"), 0);
-
         //Debug.Log(rb.velocity.z);
     }
 
