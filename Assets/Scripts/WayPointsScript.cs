@@ -48,18 +48,6 @@ public class WayPointsScript : MonoBehaviour
         // move towards the target
         transform.position = Vector3.MoveTowards(transform.position, targetWayPoint.position, speed * Time.deltaTime);
 
-        //if (transform.position == targetWayPoint.position)
-        //{
-        //    currentWayPoint++;
-        //    if(currentWayPoint < wayPointList_list.Count)
-        //    {
-        //        targetWayPoint.position = wayPointList_list[currentWayPoint];
-        //    }
-        //    else
-        //    {
-        //        Debug.Log("You reached the goal!?!?");
-        //    }
-        //}
     }
 
     public void EnteredTrigger()
