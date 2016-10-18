@@ -19,14 +19,14 @@ public class RacerScript : MonoBehaviour {
     private float boostTime;
     public GameObject cameraObject;
     private bool isFalling;
-    public bool controllable;
+    public bool spinning;
     public Rigidbody rb;
     public Animator anim;
 
 
     // Use this for initialization
     void Awake () {
-        controllable = true;
+        spinning = true;
         //cameraObject = this.transform.Find("Main Camera").gameObject;
     }
 
@@ -63,7 +63,7 @@ public class RacerScript : MonoBehaviour {
         //    rb.velocity = fwd * zVel;
 
         //}
-        if (controllable) {
+        if (spinning) {
             Vector3 fwd = transform.forward;
             if (Input.GetKey("up")) {
                 //if (rb.velocity.z < 50) {
@@ -273,16 +273,15 @@ public class RacerScript : MonoBehaviour {
     }
 
     public void hitBanana() {
-        controllable = false;
         StartCoroutine(holdControls());
     }
     IEnumerator holdControls() {
+        spinning = false;
 
         //yield return new WaitUntil(anim.GetCurrentAnimatorStateInfo(0).IsName("CanMove"));
         //yield return new WaitUntil(System.Func < T, anim.GetCurrentAnimatorStateInfo(0).IsName("CanMove") >);
         yield return new WaitForSeconds(2.50001f);
-        if(anim.GetCurrentAnimatorStateInfo(0).IsName("CanMove"))
-            controllable = true;
+
         //new predicate<T>(func<T, bool>)
     }
 }
