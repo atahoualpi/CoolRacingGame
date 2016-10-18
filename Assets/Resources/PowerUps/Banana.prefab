@@ -22,6 +22,7 @@ GameObject:
   - 33: {fileID: 33000010557086766}
   - 136: {fileID: 136000014108042194}
   - 23: {fileID: 23000010715364958}
+  - 114: {fileID: 114000012447491526}
   m_Layer: 0
   m_Name: Banana
   m_TagString: Untagged
@@ -78,6 +79,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010362008140}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114000012447491526
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010362008140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85c623fdb1eae9f47875a53d27563499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136000014108042194
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -85,7 +97,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010362008140}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
