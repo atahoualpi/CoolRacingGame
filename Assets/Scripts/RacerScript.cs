@@ -26,6 +26,7 @@ public class RacerScript : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
+        controllable = true;
         //cameraObject = this.transform.Find("Main Camera").gameObject;
     }
 
