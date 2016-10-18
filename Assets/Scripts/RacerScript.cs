@@ -19,8 +19,9 @@ public class RacerScript : MonoBehaviour {
     private float boostTime;
     public GameObject cameraObject;
     private bool isFalling;
+    public bool controllable;
     public Rigidbody rb;
-
+    public Animator anim;
 
 
     // Use this for initialization
@@ -267,5 +268,18 @@ public class RacerScript : MonoBehaviour {
     public int getJumps()
     {
         return jumps;
+    }
+
+    public void hitBanana() {
+        controllable = false;
+        StartCoroutine(holdControls());
+    }
+    IEnumerator holdControls() {
+
+        //yield return new WaitUntil(anim.GetCurrentAnimatorStateInfo(0).IsName("CanMove"));
+        //yield return new WaitUntil(System.Func < T, anim.GetCurrentAnimatorStateInfo(0).IsName("CanMove") >);
+        yield return new WaitForSeconds(2.5f);
+        controllable = true;
+        //new predicate<T>(func<T, bool>)
     }
 }

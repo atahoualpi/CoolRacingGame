@@ -2,8 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class WayPointsScript : MonoBehaviour
-{
+public class WayPointsScript : MonoBehaviour {
 
     // put the points from unity interface
     public List<Vector3> wayPointList_list = new List<Vector3>();
@@ -18,8 +17,7 @@ public class WayPointsScript : MonoBehaviour
     public float speed = 4f;
 
     // Use this for initialization
-    void Start()
-    {
+    void Start() {
         // put the points you want in this variable (points)
         //level = GameObject.Find("LevelManger");
         wayPointList_list = level.GetComponent<LevelConstructor>().splinePoints;
@@ -29,19 +27,16 @@ public class WayPointsScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         // check if we have somewere to walk
-        if (currentWayPoint < this.wayPointList_list.Count)
-        {
+        if (currentWayPoint < this.wayPointList_list.Count) {
             if (targetWayPoint == null)
                 targetWayPoint.position = wayPointList_list[currentWayPoint];
             walk();
         }
     }
 
-    void walk()
-    {
+    void walk() {
         // rotate towards the target
         //transform.forward = Vector3.RotateTowards(transform.forward, targetWayPoint.position - transform.position, speed * Time.deltaTime, 0.0f);
 
@@ -50,36 +45,41 @@ public class WayPointsScript : MonoBehaviour
 
         float angle1 = SignedAngle(transform.forward, targetWayPoint.position - transform.position);
         float angle2;
+        Vector3 pointsV = wayPointList_list[currentWayPoint + 1] - targetWayPoint.position;
+
+        float anglePoints = SignedAngle(targetWayPoint.position, wayPointList_list[currentWayPoint + 1]);
         if (currentWayPoint < wayPointList_list.Count - 1) {
-             angle2 = SignedAngle(transform.forward, wayPointList_list[currentWayPoint + 1] - transform.position);
+            angle2 = SignedAngle(transform.forward, wayPointList_list[currentWayPoint + 1] - transform.position);
         }
         else
-             angle2 = angle1;
+            angle2 = angle1;
         float distToTarget = Vector3.Distance(transform.position, targetWayPoint.position);
         //Debug.Log(angle1);
-        if (distToTarget > 5) {
-            moveScript.setVel(1 - (angle1 / 90), angle1 / 90);
+        if (distToTarget > 7) {
+
+            //moveScript.setVel(1 - (angle1 / 90), angle1 / 90);      
+            moveScript.setVel(1, angle1 / 90);
         }
         else {
-            float curInfluence = distToTarget / 5;
-            float speed = curInfluence * (1 - ((angle1 / 90)*0.4f)) + (1 - curInfluence) * (1 - ((angle2 / 90) * 0.4f));
-            float rot = curInfluence * (angle1 / 90) + (((1 - curInfluence) * (angle2 / 90)) * 100f);
+            //float curInfluence = distToTarget / 7;
+            float speed = ((1 - (SignedAngle(transform.forward, pointsV) / 90f)) / 4) + 0.25f;
+            speed = 1;
+            float rot = SignedAngle(transform.forward, pointsV)*2.7f / 90f;
+            //float speed = curInfluence * (1 - ((angle1 / 90)*0.4f)) + (1 - curInfluence) * (1 - ((angle2 / 90) * 0.4f));
+            //float rot = curInfluence * (angle1 ) + (((1 - curInfluence) * (angle2)));
 
-            moveScript.setVel(speed,rot);
-            Debug.Log("speed "+ speed);
+            moveScript.setVel(speed, rot);
+            Debug.Log("speed " + speed);
             Debug.Log("rot " + rot);
         }
     }
 
-    public void EnteredTrigger()
-    {
+    public void EnteredTrigger() {
         currentWayPoint++;
-        if (currentWayPoint < wayPointList_list.Count)
-        {
+        if (currentWayPoint < wayPointList_list.Count) {
             targetWayPoint.position = wayPointList_list[currentWayPoint];
         }
-        else
-        {
+        else {
             Debug.Log("You reached the goal!?!?");
         }
     }
