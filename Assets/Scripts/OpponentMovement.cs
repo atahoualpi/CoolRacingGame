@@ -6,7 +6,7 @@ public class OpponentMovement : MonoBehaviour {
 
     //private float count = 0;
     public int jumps = 0;
-    private float maxSpeed = 6;
+    private float maxSpeed = 7;
     private float currentRot = 0;
     private float currentSpeed = 0;
     public Rigidbody rb;
@@ -20,7 +20,7 @@ public class OpponentMovement : MonoBehaviour {
 
     void FixedUpdate() {
 
-            if (rb.velocity.magnitude < currentSpeed/maxSpeed) {
+            if (rb.velocity.magnitude < currentSpeed*maxSpeed) {
                 rb.AddRelativeForce(0, 0, 10);
 
             }
@@ -43,7 +43,7 @@ public class OpponentMovement : MonoBehaviour {
         //    transform.Rotate(0, -0.3f * rb.velocity.magnitude, 0);
         //}
 
-        transform.Rotate(0, 0.3f * rb.velocity.magnitude * currentRot, 0);
+        transform.Rotate(0, 0.3f * rb.velocity.magnitude * (currentRot), 0);
 
         //Debug.Log(rb.velocity.z);
     }
