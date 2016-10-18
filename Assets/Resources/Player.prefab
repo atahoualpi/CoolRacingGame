@@ -42,6 +42,7 @@ GameObject:
   - 65: {fileID: 65000010639851154}
   - 136: {fileID: 136000012151304866}
   - 114: {fileID: 114000013962936492}
+  - 114: {fileID: 114000011044294964}
   m_Layer: 0
   m_Name: Player
   m_TagString: ActualVehicle
@@ -113,6 +114,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011779043476}
   - 114: {fileID: 114000013204703836}
+  - 95: {fileID: 95000011468159838}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -399,6 +401,35 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013134463782}
   m_Enabled: 1
+--- !u!95 &95000011468159838
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013426419600}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0e19e390af8c150409e8c062b56af34d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000011044294964
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011382462808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5951b5a18e2c96d4ba81dcec7237697a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownedPickUp: 
 --- !u!114 &114000012384223292
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -452,7 +483,9 @@ MonoBehaviour:
   isDead: 0
   jumps: 0
   cameraObject: {fileID: 1000013134463782}
+  controllable: 0
   rb: {fileID: 54000013323491302}
+  anim: {fileID: 0}
 --- !u!124 &124000014172345326
 Behaviour:
   m_ObjectHideFlags: 1

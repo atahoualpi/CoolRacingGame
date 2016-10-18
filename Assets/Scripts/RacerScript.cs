@@ -281,8 +281,7 @@ public class RacerScript : MonoBehaviour {
         //yield return new WaitUntil(anim.GetCurrentAnimatorStateInfo(0).IsName("CanMove"));
         //yield return new WaitUntil(System.Func < T, anim.GetCurrentAnimatorStateInfo(0).IsName("CanMove") >);
         yield return new WaitForSeconds(2.50001f);
-        if(anim.GetCurrentAnimatorStateInfo(0).IsName("CanMove"))
-            controllable = true;
+        controllable = true;
         //new predicate<T>(func<T, bool>)
     }
 }
