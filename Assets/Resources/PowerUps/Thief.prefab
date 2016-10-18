@@ -22,6 +22,7 @@ GameObject:
   - 33: {fileID: 33000011725149198}
   - 136: {fileID: 136000012614304110}
   - 23: {fileID: 23000014100680716}
+  - 114: {fileID: 114000012660770234}
   m_Layer: 0
   m_Name: Thief
   m_TagString: Untagged
@@ -78,6 +79,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012272445068}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114000012660770234
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012272445068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85c623fdb1eae9f47875a53d27563499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136000012614304110
 CapsuleCollider:
   m_ObjectHideFlags: 1

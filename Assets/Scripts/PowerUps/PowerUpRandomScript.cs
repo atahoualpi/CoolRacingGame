@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System;
 
-public class PowerUpsScript : MonoBehaviour {
+public class PowerUpRandomScript : MonoBehaviour {
 
     string[] powerUpNames;
     GameObject powerUp;
