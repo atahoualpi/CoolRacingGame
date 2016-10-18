@@ -20,7 +20,7 @@ public class TriggerScript : MonoBehaviour {
             }
         }
         if (other.tag == "ActualVehicle") {
-            Debug.Log("PLAYER HIT A THING");
+
         }
         
         
