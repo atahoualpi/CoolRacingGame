@@ -94,13 +94,16 @@ public class RacerScript : MonoBehaviour {
 
         //}
 
-        if (Input.GetKey("right")) {
-            transform.Rotate(0, 0.3f * rb.velocity.magnitude, 0);
-        }
+        //if (Input.GetKey("right")) {
+        //    transform.Rotate(0, 0.3f * rb.velocity.magnitude, 0);
+        //}
 
-        if (Input.GetKey("left")) {
-            transform.Rotate(0, -0.3f * rb.velocity.magnitude, 0);
-        }
+        //if (Input.GetKey("left")) {
+        //    transform.Rotate(0, -0.3f * rb.velocity.magnitude, 0);
+        //}
+
+        transform.Rotate(0, 0.3f * rb.velocity.magnitude * Input.GetAxis("Horizontal"), 0);
+
         //Debug.Log(rb.velocity.z);
     }
 
