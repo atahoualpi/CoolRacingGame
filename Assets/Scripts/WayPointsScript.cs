@@ -55,7 +55,7 @@ public class WayPointsScript : MonoBehaviour {
             angle2 = angle1;
         float distToTarget = Vector3.Distance(transform.position, targetWayPoint.position);
         //Debug.Log(angle1);
-        if (distToTarget > 7) {
+        if (distToTarget > 5) {
 
             //moveScript.setVel(1 - (angle1 / 90), angle1 / 90);      
             moveScript.setVel(1, angle1 / 90);
@@ -64,7 +64,7 @@ public class WayPointsScript : MonoBehaviour {
             //float curInfluence = distToTarget / 7;
             float speed = ((1 - (SignedAngle(transform.forward, pointsV) / 90f)) / 4) + 0.25f;
             speed = 1;
-            float rot = SignedAngle(transform.forward, pointsV)*2.7f / 90f;
+            float rot = SignedAngle(transform.forward, pointsV)*1.8f / 90f;
             //float speed = curInfluence * (1 - ((angle1 / 90)*0.4f)) + (1 - curInfluence) * (1 - ((angle2 / 90) * 0.4f));
             //float rot = curInfluence * (angle1 ) + (((1 - curInfluence) * (angle2)));
 
