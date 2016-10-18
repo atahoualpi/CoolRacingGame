@@ -19,7 +19,7 @@ public class BananaScript : MonoBehaviour {
         Destroy(gameObject);
         if (other.tag == "ActualVehicle")
         {
-            //other.GetComponent<RacerScript>().
+            other.GetComponent<RacerScript>().hitBanana();
         }
     }
 }
