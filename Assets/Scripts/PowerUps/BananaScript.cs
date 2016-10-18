@@ -15,11 +15,14 @@ public class BananaScript : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        other.transform.FindChild("GameObject").GetComponent<Animator>().SetTrigger("bananaSpin");
         Destroy(gameObject);
-        if (other.tag == "ActualVehicle")
-        {
-            other.GetComponent<RacerScript>().hitBanana();
+
+
+            if (other.tag == "ActualVehicle") {
+            if (other.GetComponent<RacerScript>().spinning) { 
+                other.transform.FindChild("GameObject").GetComponent<Animator>().SetTrigger("bananaSpin");
+                other.GetComponent<RacerScript>().hitBanana();
+            }
         }
     }
 }
