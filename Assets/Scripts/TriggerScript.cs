@@ -15,8 +15,11 @@ public class TriggerScript : MonoBehaviour {
 
     void OnTriggerEnter(Collider other) {
         if(other.tag == "Opponent") {
-            if (other.GetComponent<WayPointsScript>().targetWayPoint.position == this.transform.parent.transform.position) {
+            Debug.Log(other.GetComponent<WayPointsScript>().targetWayPoint.position);
+            Debug.Log(this.transform.parent.transform.position);
+            if (other.GetComponent<WayPointsScript>().targetWayPoint.position.x == this.transform.parent.transform.position.x && other.GetComponent<WayPointsScript>().targetWayPoint.position.z == this.transform.parent.transform.position.z) {
 
+                other.GetComponent<WayPointsScript>().EnteredTrigger();
             }
         }
         if (other.tag == "ActualVehicle") {
