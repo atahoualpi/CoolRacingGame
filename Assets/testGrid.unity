@@ -1249,6 +1249,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 0.07
   zRotation: 0
+--- !u!1 &806485898 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000011382462808, guid: 3b3fd969bb2899b4b826e37d85df73ed,
+    type: 2}
+  m_PrefabInternal: {fileID: 1765086190}
+--- !u!114 &806485906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 806485898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1386973874bfce04eaa4ee918831477d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wayPointList_list: []
+  moveScript: {fileID: 0}
+  isOpponent: 0
+  currentLap: 0
+  level: {fileID: 911677035}
+  currentWayPoint: 0
+  targetWayPoint: {fileID: 358910429}
+  speed: 4
 --- !u!1 &881015798
 GameObject:
   m_ObjectHideFlags: 0
