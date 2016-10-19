@@ -19,7 +19,9 @@ public class BananaScript : MonoBehaviour {
 
 
             if (other.tag == "ActualVehicle") {
-            if (other.GetComponent<RacerScript>().spinning) { 
+            if (other.GetComponent<RacerScript>().spinning) {
+                other.transform.FindChild("GameObject").GetComponent<Animator>().enabled = true;
+
                 other.transform.FindChild("GameObject").GetComponent<Animator>().SetTrigger("bananaSpin");
                 other.GetComponent<RacerScript>().hitBanana();
             }

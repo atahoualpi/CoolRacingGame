@@ -16,6 +16,7 @@ public class ActualVehicle : MonoBehaviour {
     void Awake()
     {
         zRotation = 0;
+        GetComponent<Animator>().enabled = false;
     }
 
     // Update is called once per frame
@@ -23,7 +24,6 @@ public class ActualVehicle : MonoBehaviour {
 
         Quaternion newRotation = Quaternion.AngleAxis(-30 * Input.GetAxis("Horizontal"), Vector3.forward);
         transform.localRotation = Quaternion.Slerp(transform.localRotation, newRotation, rotateSpeed);
-   
     }
 
     void OnCollisionEnter(Collision collision)
