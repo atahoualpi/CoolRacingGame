@@ -75,7 +75,7 @@ public class PowerUpRandomScript : MonoBehaviour {
     void Update () {
         if(powerUp == null)
         {
-            //StartCoroutine(Wait10());
+            //StartCoroutine(Wait10());   FFiIiIIIXXX THIIIIIS
         }
 
     }
@@ -111,7 +111,6 @@ public class PowerUpRandomScript : MonoBehaviour {
     {
         yield return new WaitForSeconds(10f);
         ChoosePowerUp();
-        Debug.Log(chosenOne);
         InstantiatePowerUp();
     }
 }
