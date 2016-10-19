@@ -41,6 +41,7 @@ GameObject:
   - 64: {fileID: 64000012823425960}
   - 23: {fileID: 23000011692536554}
   - 114: {fileID: 114000012838683934}
+  - 114: {fileID: 114000014106585264}
   m_Layer: 0
   m_Name: turnRight
   m_TagString: Untagged
@@ -637,3 +638,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enEx: 
+--- !u!114 &114000014106585264
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010789368256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6373daa039f66c44db230e71fc290b3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numEachPowerUp: 0

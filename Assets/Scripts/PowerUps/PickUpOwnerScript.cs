@@ -16,7 +16,7 @@ public class PickUpOwnerScript : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown("space"))
         {
-            if(ownedPickUp == "Banana")
+            if(ownedPickUp == "Banana" || ownedPickUp == "Banana(Clone)")
             {
                 Banana();
             }

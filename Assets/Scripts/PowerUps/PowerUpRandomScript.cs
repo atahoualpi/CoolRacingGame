@@ -60,7 +60,7 @@ public class PowerUpRandomScript : MonoBehaviour {
 
         // Instantiate the power up
         powerUp = Instantiate(Resources.Load("PowerUps/" + chosenOne)) as GameObject;
-        powerUp.transform.position = new Vector3(transform.position.x + puPlace, transform.position.y + 1, transform.position.z);
+        powerUp.transform.position = new Vector3(transform.position.x + puPlace, transform.position.y+0.3f, transform.position.z);
     }
 	
 	// Update is called once per frame
@@ -82,6 +82,5 @@ public class PowerUpRandomScript : MonoBehaviour {
         }
 
         chosenOne = shuffleBag.Next().Split('\\').Last().Split('.')[0];
-        Debug.Log("Chosen PowerUp: " + chosenOne);
     }
 }
