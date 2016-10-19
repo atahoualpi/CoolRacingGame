@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class WayPointsScript : MonoBehaviour {
 
-    // put the points from unity interface
     public List<Vector3> wayPointList_list = new List<Vector3>();
     public OpponentMovement moveScript;
     public bool isOpponent;

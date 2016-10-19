@@ -20,6 +20,10 @@ public class PickUpOwnerScript : MonoBehaviour {
             {
                 Banana();
             }
+            if (ownedPickUp == "Thief" || ownedPickUp == "Thief(Clone)")
+            {
+                Thief();
+            }
         }
 	
 	}
@@ -29,5 +33,9 @@ public class PickUpOwnerScript : MonoBehaviour {
         fruit = Instantiate(Resources.Load("Prefabs/DolBananapeel")) as GameObject;
         fruit.transform.position = transform.position - transform.forward;
         fruit.transform.position = new Vector3(fruit.transform.position.x, 0, fruit.transform.position.z);
+    }
+    void Thief()
+    {
+        
     }
 }
