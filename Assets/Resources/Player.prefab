@@ -43,6 +43,7 @@ GameObject:
   - 136: {fileID: 136000012151304866}
   - 114: {fileID: 114000013962936492}
   - 114: {fileID: 114000011044294964}
+  - 114: {fileID: 114000011021871262}
   m_Layer: 0
   m_Name: Player
   m_TagString: ActualVehicle
@@ -114,7 +115,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011779043476}
   - 114: {fileID: 114000013204703836}
-  - 95: {fileID: 95000011468159838}
+  - 95: {fileID: 95000012734746338}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -129,7 +130,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011382462808}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 29.22, y: 0.26, z: 29.2}
+  m_LocalPosition: {x: 29.3, y: 0.5, z: 30}
   m_LocalScale: {x: 0.11088687, y: 0.11088687, z: 0.11088687}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -401,7 +402,7 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013134463782}
   m_Enabled: 1
---- !u!95 &95000011468159838
+--- !u!95 &95000012734746338
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -418,6 +419,25 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000011021871262
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011382462808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1386973874bfce04eaa4ee918831477d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wayPointList_list: []
+  moveScript: {fileID: 0}
+  isOpponent: 0
+  currentLap: 0
+  level: {fileID: 0}
+  currentWayPoint: 0
+  targetWayPoint: {fileID: 0}
+  speed: 4
 --- !u!114 &114000011044294964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -483,9 +503,9 @@ MonoBehaviour:
   isDead: 0
   jumps: 0
   cameraObject: {fileID: 1000013134463782}
-  controllable: 0
+  spinning: 0
   rb: {fileID: 54000013323491302}
-  anim: {fileID: 0}
+  anim: {fileID: 95000012734746338}
 --- !u!124 &124000014172345326
 Behaviour:
   m_ObjectHideFlags: 1
