@@ -3,19 +3,8 @@ using System.Collections;
 
 public class BananaScript : MonoBehaviour {
 
-    // Use this for initialization
-    void Start () {
-
-    }
-
-    // Update is called once per frame
-    void Update () {
-	
-	}
-
     void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
 
 
             if (other.tag == "ActualVehicle") {
@@ -26,5 +15,7 @@ public class BananaScript : MonoBehaviour {
                 other.GetComponent<RacerScript>().hitBanana();
             }
         }
+        Destroy(gameObject);
+
     }
 }

@@ -78,7 +78,6 @@ GameObject:
   - 33: {fileID: 33000013863773416}
   - 65: {fileID: 65000013016391640}
   - 23: {fileID: 23000010781807700}
-  - 135: {fileID: 135000012548750698}
   m_Layer: 0
   m_Name: Cube (4)
   m_TagString: Untagged
@@ -190,7 +189,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010789368256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 42.676937, y: 8.173758, z: 60.225094}
+  m_LocalPosition: {x: 16.53, y: 6.2191095, z: 28.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -223,7 +222,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012448782826}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5, y: 0.5, z: -4.5}
+  m_LocalPosition: {x: 2.5, y: 0.5, z: -4.499}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -236,7 +235,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013776528996}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.5, y: 0.5, z: -2.5}
+  m_LocalPosition: {x: 4.5, y: 0.5, z: -2.4985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -576,7 +575,7 @@ BoxCollider:
   m_GameObject: {fileID: 1000012448782826}
   m_Material: {fileID: 13400000, guid: 9c66b34779aa5fb4c92675d62fdb1215, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -600,7 +599,7 @@ BoxCollider:
   m_GameObject: {fileID: 1000011313327376}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -612,7 +611,7 @@ BoxCollider:
   m_GameObject: {fileID: 1000013776528996}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -652,15 +651,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numEachPowerUp: 0
---- !u!135 &135000012548750698
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011313327376}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.84
-  m_Center: {x: 1.44, y: -0.08, z: 0}
