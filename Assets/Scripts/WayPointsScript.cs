@@ -15,16 +15,29 @@ public class WayPointsScript : MonoBehaviour {
     public int currentWayPoint = 0;
     public Transform targetWayPoint;
 
-    public float speed = 4f;
+
+
+
+    //RANDOM VARIABLE AI
+    private float speedVar;
+    private float distVar;
+    private float rotVar;
+    private int wallHits;
+
+    private float lapTime;
+    private float t;
+
 
     // Use this for initialization
     void Start() {
         // put the points you want in this variable (points)
         //level = GameObject.Find("LevelManger");
-        createLaps(3);
+        createLaps(10);
     }
     void Awake() {
-        currentLap = 1;
+        t = 0;
+        lapTime = 0;
+        currentLap = 0;
     }
 
     void createLaps(int laps) {
@@ -42,6 +55,7 @@ public class WayPointsScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        t += Time.deltaTime;
         // check if we have somewere to walk
         if (currentWayPoint < this.wayPointList_list.Count) {
             if (targetWayPoint == null)
@@ -70,7 +84,7 @@ public class WayPointsScript : MonoBehaviour {
             angle2 = angle1;
         float distToTarget = Vector3.Distance(transform.position, targetWayPoint.position);
         //Debug.Log(angle1);
-        if (distToTarget > 5) {
+        if (distToTarget > distVar) {
 
             //moveScript.setVel(1 - (angle1 / 90), angle1 / 90);      
             moveScript.setVel(1, angle1 / 90);
@@ -79,19 +93,28 @@ public class WayPointsScript : MonoBehaviour {
             //float curInfluence = distToTarget / 7;
             float speed = ((1 - (SignedAngle(transform.forward, pointsV) / 90f)) / 4) + 0.25f;
             speed = 1;
-            float rot = SignedAngle(transform.forward, pointsV)*1.8f / 90f;
+            float rot = SignedAngle(transform.forward, pointsV)*rotVar / 90f;
             //float speed = curInfluence * (1 - ((angle1 / 90)*0.4f)) + (1 - curInfluence) * (1 - ((angle2 / 90) * 0.4f));
             //float rot = curInfluence * (angle1 ) + (((1 - curInfluence) * (angle2)));
 
-            moveScript.setVel(speed, rot);
+            moveScript.setVel(1, rot);
             //Debug.Log("speed " + speed);
             //Debug.Log("rot " + rot);
         }
     }
 
     public void newLap() {
+        Debug.Log(this.name);
+        Debug.Log("LAP TIME: " + t);
+        Debug.Log("DIST VAR: " + distVar);
+        Debug.Log("ROT VAR: " + rotVar);
+        t = 0;
+
         currentLap++;
-        Debug.Log(currentLap);
+        distVar = Random.Range(4f, 8f);
+        rotVar = Random.Range(1f, 6f);
+
+        //Debug.Log(currentLap);
     }
 
     public void EnteredTrigger() {
@@ -112,5 +135,9 @@ public class WayPointsScript : MonoBehaviour {
 
     public float getDistToNextWP() {
         return Vector3.Distance(transform.position, targetWayPoint.position);
+    }
+
+    public void addHit() {
+
     }
 }

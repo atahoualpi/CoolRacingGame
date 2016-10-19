@@ -78,6 +78,7 @@ GameObject:
   - 33: {fileID: 33000013863773416}
   - 65: {fileID: 65000013016391640}
   - 23: {fileID: 23000010781807700}
+  - 135: {fileID: 135000012548750698}
   m_Layer: 0
   m_Name: Cube (4)
   m_TagString: Untagged
@@ -189,7 +190,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010789368256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.99, y: 0, z: 0}
+  m_LocalPosition: {x: 42.676937, y: 8.173758, z: 60.225094}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -575,7 +576,7 @@ BoxCollider:
   m_GameObject: {fileID: 1000012448782826}
   m_Material: {fileID: 13400000, guid: 9c66b34779aa5fb4c92675d62fdb1215, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -599,7 +600,7 @@ BoxCollider:
   m_GameObject: {fileID: 1000011313327376}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -611,7 +612,7 @@ BoxCollider:
   m_GameObject: {fileID: 1000013776528996}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -626,6 +627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 871cc192c096e474cb08efed13a7728e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStartPoint: 0
 --- !u!114 &114000012838683934
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -650,3 +652,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numEachPowerUp: 0
+--- !u!135 &135000012548750698
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011313327376}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.84
+  m_Center: {x: 1.44, y: -0.08, z: 0}

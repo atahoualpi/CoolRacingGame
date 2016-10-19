@@ -54,10 +54,10 @@ public class GameLogic : MonoBehaviour {
         if(potCars.Count == 1) {
             //DestroyedCar = po
             tryDestroy(potCars[0].gameObject);
-            Debug.Log("ONLY ONE");
+            //Debug.Log("ONLY ONE");
         }
         else {
-            Debug.Log("MORE THAN ONE");
+            //Debug.Log("MORE THAN ONE");
 
             SortedDictionary<float, GameObject> dic = new SortedDictionary<float, GameObject>();
             foreach(GameObject c in potCars) {
@@ -72,7 +72,7 @@ public class GameLogic : MonoBehaviour {
             Destroy(car);
         }
         else if (car.tag == "ActualVehicle") {
-            Debug.Log("YOU LOSE");
+            //Debug.Log("YOU LOSE");
         }
 
     }

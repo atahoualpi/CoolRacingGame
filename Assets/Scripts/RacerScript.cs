@@ -74,21 +74,27 @@ public class RacerScript : MonoBehaviour {
                 //rb.velocity = fwd * zVel;
 
             }
-            else {
-                //if (zVel > 0) {
-                //    zVel -= 0.2f;
-                //    rb.velocity = fwd * zVel;
-                //}
-            }
+            //else {
+            //    //if (zVel > 0) {
+            //    //    zVel -= 0.2f;
+            //    //    rb.velocity = fwd * zVel;
+            //    //}
+            //}
+            else if (Input.GetKey("down")) {
+                rb.AddRelativeForce(0, 0, -5);
 
-            if (Input.GetKey("down")) {
-                if (zVel > -2) {
-                    zVel -= 0.2f;
-
-                }
-                rb.velocity = fwd * zVel;
 
             }
+
+
+            //if (Input.GetKey("down")) {
+            //    if (zVel > -2) {
+            //        zVel -= 0.2f;
+
+            //    }
+            //    rb.velocity = fwd * zVel;
+
+
             //else {
             //    if (zVel < 0) {
             //        zVel += 0.2f;
@@ -104,9 +110,14 @@ public class RacerScript : MonoBehaviour {
             //if (Input.GetKey("left")) {
             //    transform.Rotate(0, -0.3f * rb.velocity.magnitude, 0);
             //}
-
-            transform.Rotate(0, 0.3f * rb.velocity.magnitude * Input.GetAxis("Horizontal"), 0);
+            if (Mathf.Sign(rb.velocity.magnitude) == Mathf.Sign(transform.forward.magnitude)) {
+                transform.Rotate(0, 0.3f * rb.velocity.magnitude * Input.GetAxis("Horizontal"), 0);
+            }
+            else {
+                transform.Rotate(0, -0.3f * rb.velocity.magnitude * Input.GetAxis("Horizontal"), 0);
+            }
         }
+    
         //Debug.Log(rb.velocity.z);
     }
 
