@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class StealPosScript : MonoBehaviour {
-    void OnTriggerEnter(Collider other)
-    {
+public class StealPosScript : MonoBehaviour
+{
+    public bool inTrigger = false;
+    public GameObject curOpp;
 
-        if (other.tag == "ActualVehicle")
+    void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Opponent")
         {
-            
+            inTrigger = true;
+            curOpp = other.gameObject;        
         }
-        Destroy(gameObject);
     }
 }

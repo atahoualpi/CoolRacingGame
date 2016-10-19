@@ -37,13 +37,14 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010674149456}
-  - 114: {fileID: 114000012547890496}
   - 54: {fileID: 54000013323491302}
   - 65: {fileID: 65000010639851154}
   - 136: {fileID: 136000012151304866}
   - 114: {fileID: 114000013962936492}
   - 114: {fileID: 114000011044294964}
   - 114: {fileID: 114000011021871262}
+  - 136: {fileID: 136000012876632612}
+  - 114: {fileID: 114000010623082866}
   m_Layer: 0
   m_Name: Player
   m_TagString: ActualVehicle
@@ -79,7 +80,6 @@ GameObject:
   - 4: {fileID: 4000012659429596}
   - 33: {fileID: 33000012434854656}
   - 23: {fileID: 23000011516637826}
-  - 114: {fileID: 114000012384223292}
   m_Layer: 0
   m_Name: Spaceship (1)
   m_TagString: Untagged
@@ -370,11 +370,11 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011382462808}
-  m_Material: {fileID: 13400000, guid: 9c66b34779aa5fb4c92675d62fdb1215, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 3.09, y: 0.23, z: 1.02}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65000010722292572
 BoxCollider:
@@ -419,6 +419,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000010623082866
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011382462808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e35a8a96f59a045a9ed1ab77de3714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000011021871262
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -450,32 +461,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownedPickUp: 
---- !u!114 &114000012384223292
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012498053522}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1ddabe10911fa74a933267cfff67cdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotateSpeed: 0.07
-  zRotation: 0
---- !u!114 &114000012547890496
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011382462808}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1ddabe10911fa74a933267cfff67cdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotateSpeed: 0.1
-  zRotation: 0
 --- !u!114 &114000013204703836
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -526,6 +511,19 @@ CapsuleCollider:
   m_Height: 6.07
   m_Direction: 2
   m_Center: {x: 0, y: 1.39, z: 0}
+--- !u!136 &136000012876632612
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011382462808}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 10
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 8}
 --- !u!136 &136000013991705066
 CapsuleCollider:
   m_ObjectHideFlags: 1
