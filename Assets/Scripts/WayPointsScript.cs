@@ -13,18 +13,18 @@ public class WayPointsScript : MonoBehaviour {
     private List<Vector3> splines = new List<Vector3>();
     public int currentWayPoint = 0;
     public Transform targetWayPoint;
-
+    public  GameLogic GL;
 
 
 
     //RANDOM VARIABLE AI
     private float speedVar;
-    private float distVar;
-    private float rotVar;
-    private int wallHits;
+    public float distVar;
+    public float rotVar;
 
     private float lapTime;
     private float t;
+    private int WallHits;
 
 
     // Use this for initialization
@@ -34,7 +34,10 @@ public class WayPointsScript : MonoBehaviour {
         createLaps(10);
     }
     void Awake() {
+        //Time.timeScale = 10f;
+
         t = 0;
+        WallHits = 0;
         lapTime = 0;
         currentLap = 0;
     }
@@ -103,15 +106,24 @@ public class WayPointsScript : MonoBehaviour {
     }
 
     public void newLap() {
-        Debug.Log(this.name);
-        Debug.Log("LAP TIME: " + t);
-        Debug.Log("DIST VAR: " + distVar);
-        Debug.Log("ROT VAR: " + rotVar);
+        //Debug.Log(this.name);
+        //Debug.Log("LAP TIME: " + t);
+        //Debug.Log("DIST VAR: " + distVar);
+        //Debug.Log("ROT VAR: " + rotVar);
+        if (currentLap != 0) {
+            if (currentLap < 9)
+                GL.addLap(t, "DIST VAR: " + distVar + "ROT VAR: " + rotVar + "Wall hits :" + WallHits, false);
+            else
+                GL.addLap(t, "DIST VAR: " + distVar + "ROT VAR: " + rotVar + "Wall hits :" + WallHits, true);
+        }
         t = 0;
+        WallHits = 0;
 
         currentLap++;
-        distVar = Random.Range(4f, 8f);
-        rotVar = Random.Range(1f, 6f);
+        //distVar = Random.Range(3f, 6f);
+        //rotVar = Random.Range(1f, 6f);
+        //distVar = 6;
+        //rotVar = 5.23f;
 
         //Debug.Log(currentLap);
     }
@@ -137,6 +149,6 @@ public class WayPointsScript : MonoBehaviour {
     }
 
     public void addHit() {
-
+        WallHits++;
     }
 }

@@ -116,8 +116,17 @@ public class RacerScript : MonoBehaviour {
             else {
                 transform.Rotate(0, -0.3f * rb.velocity.magnitude * Input.GetAxis("Horizontal"), 0);
             }
+
+
         }
-    
+        if (Input.GetKey(KeyCode.M)) {
+            cameraObject.transform.localPosition = new Vector3(0, 3.509f, 16.2f);
+            cameraObject.transform.localRotation = new Quaternion(0, 180, 0,0);
+        }
+        else {
+            cameraObject.transform.localRotation = new Quaternion(0, 0, 0, 0);
+            cameraObject.transform.localPosition = new Vector3(0, 3.509f, -16.2f);
+        }
         //Debug.Log(rb.velocity.z);
     }
 

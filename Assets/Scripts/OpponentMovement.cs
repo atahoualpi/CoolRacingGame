@@ -10,8 +10,9 @@ public class OpponentMovement : MonoBehaviour {
     private float currentRot = 0;
     private float currentSpeed = 0;
     public Rigidbody rb;
+    public OpponentTurn turn;
 
-    
+
 
     // Use this for initialization
     void Awake () {
@@ -20,10 +21,10 @@ public class OpponentMovement : MonoBehaviour {
 
     void FixedUpdate() {
 
-            if (rb.velocity.magnitude < currentSpeed*maxSpeed) {
+            //if (rb.velocity.magnitude < currentSpeed*maxSpeed) {
                 rb.AddRelativeForce(0, 0, 10);
 
-            }
+            //}
         
 
         //if (Input.GetKey("down")) {
@@ -44,7 +45,7 @@ public class OpponentMovement : MonoBehaviour {
         //}
 
         transform.Rotate(0, 0.3f * rb.velocity.magnitude * (currentRot), 0);
-
+        turn.rot = currentRot/1.3f;
         //Debug.Log(rb.velocity.z);
     }
 
@@ -58,5 +59,13 @@ public class OpponentMovement : MonoBehaviour {
     public void setVel(float speed, float rot) {
         currentSpeed = speed;
         currentRot = rot;
+    }
+
+    void OnCollisionEnter(Collision col) {
+        //Debug.Log("HIT WALL");
+
+        if (col.gameObject.tag == "Wall") {
+            GetComponent<WayPointsScript>().addHit();
+        }
     }
 }

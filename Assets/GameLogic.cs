@@ -2,16 +2,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 public class GameLogic : MonoBehaviour {
 
     private List<GameObject> vehicles;
+    private SortedDictionary<float, String> laps;
     public GameObject Racers;
 
     float t;
 
+    int count = 0;
+
+
+
     void Awake() {
         t = 0;
+        laps = new SortedDictionary<float, String>();
     }
 
     // Use this for initialization
@@ -21,11 +28,11 @@ public class GameLogic : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        t += Time.deltaTime;
-            if(t > 5) {
-                killLastCar();
-                t = 0;
-            }
+        //t += Time.deltaTime;
+        //    if(t > 5) {
+        //        killLastCar();
+        //        t = 0;
+        //    }
 	}
 
     void killLastCar() {
@@ -75,5 +82,19 @@ public class GameLogic : MonoBehaviour {
             //Debug.Log("YOU LOSE");
         }
 
+    }
+
+    public void addLap(float t, String s, bool done) {
+        laps.Add(t, s);
+
+        if (done) {
+            count++;
+        }
+
+        if (count == 3) {
+            foreach (KeyValuePair<float, String> entry in laps) {
+                Debug.Log("LAP TIME: " + entry.Key + " " + entry.Value);
+            }
+        }
     }
 }
