@@ -35,10 +35,10 @@ public class GameLogic : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (isTimeMode) {
-            t += Time.deltaTime;
+            t -= Time.deltaTime;
             if (t <= 0) {
                 List<GameObject> c = rankCars();
-                
+                Destroy(c[c.Count - 1]);
                 
                 //killLastCar();
                 //t = 0;
