@@ -22,12 +22,27 @@ public class RacerScript : MonoBehaviour {
     public bool spinning;
     public Rigidbody rb;
     public Animator anim;
+    private float acc;
 
 
     // Use this for initialization
     void Awake () {
         spinning = true;
+        acc = 10;
         //cameraObject = this.transform.Find("Main Camera").gameObject;
+    }
+
+    public void Boost()
+    {
+        acc = 20;
+        StartCoroutine(Boosting());
+    }
+
+    IEnumerator Boosting()
+    {
+        GetComponent<PickUpOwnerScript>().ownedPickUp = null;
+        yield return new WaitForSeconds(5f);
+        acc = 10;
     }
 
     void FixedUpdate() {
@@ -69,7 +84,7 @@ public class RacerScript : MonoBehaviour {
                 //if (rb.velocity.z < 50) {
 
                 //}
-                rb.AddRelativeForce(0, 0, 10);
+                rb.AddRelativeForce(0, 0, acc);
 
                 //rb.velocity = fwd * zVel;
 

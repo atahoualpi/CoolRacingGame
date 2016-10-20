@@ -19,8 +19,8 @@ public class PowerUpRandomScript : MonoBehaviour {
     int amount = 0;
     string nothingPath;
 
-    float[] puPlaceArray;
-    float puPlace;
+    Vector3[] puPlaceArray;
+    Vector3 puPlace;
 
     void Awake()
     {
@@ -37,15 +37,29 @@ public class PowerUpRandomScript : MonoBehaviour {
         }
         //if(this.name == "line(Clone)")
         //{
-            mesh = GetComponent<MeshFilter>().mesh;
+        //mesh = GetComponent<MeshFilter>().mesh;
         //}
         //else
         //{
         //    mesh = transform.FindChild("Cube").transform.GetComponent<MeshFilter>().mesh;
 
         //}
+        if (this.name == "line(Clone)")
+        {
+            //puPlaceArray = new float[3] { 0, (mesh.bounds.size.x / 4) - 1f, -(mesh.bounds.size.x / 4) + 1f };
+            puPlaceArray = new Vector3[3] { new Vector3(-1.5f, 0.3f, 0), new Vector3(0, 0.3f, 0), new Vector3(1.5f, 0.3f, 0) };
+        }
 
-        puPlaceArray = new float[3] { 0, mesh.bounds.size.x / 4, -mesh.bounds.size.x / 4 };
+        else if (this.name == "turnLeft(Clone)")
+        {
+            puPlaceArray = new Vector3[3] { new Vector3(-2f, 0.3f, -2f), new Vector3(-1f, 0.3f, -1f), new Vector3(0, 0.3f, 0) };
+        }
+        else if (this.name == "turnRight(Clone)")
+        {
+            puPlaceArray = new Vector3[3] { new Vector3(0, 0.3f, 0), new Vector3(1f, 0.3f, -1f), new Vector3(2f, 0.3f, -2f) };
+        }
+
+
     }
     // Use this for initialization
     void Start () {
@@ -54,18 +68,16 @@ public class PowerUpRandomScript : MonoBehaviour {
         numEachPowerUp = 2;
         shuffleBag = new ShuffleBag(powerUpNames.Length);
         ChoosePowerUp();
-
-        // choose a placement
-        puPlace = puPlaceArray[UnityEngine.Random.Range(0, puPlaceArray.Length)];
-
-        // Instantiate the power up
-        powerUp = Instantiate(Resources.Load("PowerUps/" + chosenOne)) as GameObject;
-        powerUp.transform.position = new Vector3(transform.position.x + puPlace, transform.position.y+0.3f, transform.position.z);
+        InstantiatePowerUp();
     }
-	
-	// Update is called once per frame
-	void Update () {
-        
+
+    // Update is called once per frame
+    void Update () {
+        if(powerUp == null)
+        {
+            //StartCoroutine(Wait10());   FFiIiIIIXXX THIIIIIS
+        }
+
     }
 
     void ChoosePowerUp()
@@ -82,5 +94,23 @@ public class PowerUpRandomScript : MonoBehaviour {
         }
 
         chosenOne = shuffleBag.Next().Split('\\').Last().Split('.')[0];
+    }
+
+    void InstantiatePowerUp()
+    {
+        // choose a placement
+        puPlace = puPlaceArray[UnityEngine.Random.Range(0, puPlaceArray.Length)];
+
+        // Instantiate the power up
+        powerUp = Instantiate(Resources.Load("PowerUps/" + chosenOne)) as GameObject;
+        powerUp.transform.parent = this.gameObject.transform;
+        powerUp.transform.localPosition = puPlace;
+    }
+
+    IEnumerator Wait10()
+    {
+        yield return new WaitForSeconds(10f);
+        ChoosePowerUp();
+        InstantiatePowerUp();
     }
 }

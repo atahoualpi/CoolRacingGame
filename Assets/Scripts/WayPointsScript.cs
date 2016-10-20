@@ -30,7 +30,6 @@ public class WayPointsScript : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        // put the points you want in this variable (points)
         //level = GameObject.Find("LevelManger");
         createLaps(10);
     }

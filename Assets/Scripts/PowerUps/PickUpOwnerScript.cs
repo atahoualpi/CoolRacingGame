@@ -18,7 +18,7 @@ public class PickUpOwnerScript : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown("space"))
         {
-            if(ownedPickUp == "Banana" || ownedPickUp == "Banana(Clone)")
+            if (ownedPickUp == "Banana" || ownedPickUp == "Banana(Clone)")
             {
                 Banana();
             }
@@ -28,7 +28,7 @@ public class PickUpOwnerScript : MonoBehaviour {
             }
             if (ownedPickUp == "Boost" || ownedPickUp == "Boost(Clone)")
             {
-                Boost();
+                GetComponent<RacerScript>().Boost();
             }
         }
 	
@@ -47,17 +47,25 @@ public class PickUpOwnerScript : MonoBehaviour {
         if (GetComponent<StealPosScript>().inTrigger)
         {
             currOpp = GetComponent<StealPosScript>().curOpp;
-            Vector3 tempPos = transform.position;
+            Debug.Log(currOpp.name);
+            Vector3 tempVec = transform.position;
             transform.position = new Vector3(currOpp.transform.position.x, currOpp.transform.position.y, currOpp.transform.position.z);
-            currOpp.transform.position = new Vector3(tempPos.x, tempPos.y, tempPos.z);
+            currOpp.transform.position = new Vector3(tempVec.x, tempVec.y, tempVec.z);
+            int tempInt = currOpp.GetComponent<WayPointsScript>().currentWayPoint;
+            currOpp.GetComponent<WayPointsScript>().currentWayPoint = GetComponent<WayPointsScript>().currentWayPoint;
+            GetComponent<WayPointsScript>().currentWayPoint = tempInt;
+            Transform tempTr = currOpp.GetComponent<WayPointsScript>().targetWayPoint;
+            currOpp.GetComponent<WayPointsScript>().targetWayPoint = GetComponent<WayPointsScript>().targetWayPoint;
+            GetComponent<WayPointsScript>().targetWayPoint = tempTr;
             GetComponent<StealPosScript>().inTrigger = false;
             currOpp = null;
-            ownedPickUp = null;
         }
+        ownedPickUp = null;
     }
 
-    void Boost()
-    {
-        // a smart way to accelerate goes here :)
-    }
+    //void Boost()
+    //{
+    //    // a smart way to accelerate goes here :)
+          // nope it went to racerscript -> ask there for help 
+    //}
 }
