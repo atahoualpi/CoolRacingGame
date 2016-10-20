@@ -40,6 +40,8 @@ public class RacerScript : MonoBehaviour {
 
     IEnumerator Boosting()
     {
+        boosting = true;
+        boostTime = 0;
         GetComponent<PickUpOwnerScript>().ownedPickUp = null;
         yield return new WaitForSeconds(5f);
         acc = 10;
@@ -204,7 +206,7 @@ public class RacerScript : MonoBehaviour {
             if (boosting)
             {
                 boostTime += Time.deltaTime;
-                transform.Translate(0, 0, boostSpeed);
+                //transform.Translate(0, 0, boostSpeed);
                 if (boostTime >= 3) {
                     boostSpeed -= 0.1f;
                     if (boostSpeed <= 0)
