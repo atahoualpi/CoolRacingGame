@@ -276,11 +276,11 @@ Prefab:
       objectReference: {fileID: 894053965}
     - target: {fileID: 1000013134463782, guid: 3b3fd969bb2899b4b826e37d85df73ed, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1000011382462808, guid: 3b3fd969bb2899b4b826e37d85df73ed, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b3fd969bb2899b4b826e37d85df73ed, type: 2}
@@ -1063,7 +1063,7 @@ MonoBehaviour:
   currentLap: 0
   level: {fileID: 911677035}
   currentWayPoint: 0
-  targetWayPoint: {fileID: 564671032}
+  targetWayPoint: {x: 0, y: 0, z: 0}
   GL: {fileID: 274708020}
   distVar: 5.8
   rotVar: 5.4
@@ -1698,7 +1698,7 @@ MonoBehaviour:
   currentLap: 0
   level: {fileID: 911677035}
   currentWayPoint: 0
-  targetWayPoint: {fileID: 881015801}
+  targetWayPoint: {x: 0, y: 0, z: 0}
   GL: {fileID: 274708020}
   distVar: 6
   rotVar: 5.23
@@ -1917,7 +1917,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1941540204
 Transform:
   m_ObjectHideFlags: 0
@@ -2202,7 +2202,7 @@ MonoBehaviour:
   currentLap: 0
   level: {fileID: 911677035}
   currentWayPoint: 0
-  targetWayPoint: {fileID: 484050624}
+  targetWayPoint: {x: 0, y: 0, z: 0}
   GL: {fileID: 274708020}
   distVar: 5.6
   rotVar: 4.7

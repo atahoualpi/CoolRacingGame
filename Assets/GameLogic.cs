@@ -9,15 +9,21 @@ public class GameLogic : MonoBehaviour {
     private List<GameObject> vehicles;
     private SortedDictionary<float, String> laps;
     public GameObject Racers;
+    private bool isTimeMode = true;
 
-    float t;
+
+    public float t;
 
     int count = 0;
 
 
 
     void Awake() {
-        t = 0;
+        if (isTimeMode)
+            t = 20;
+        else
+            t = 0;
+
         laps = new SortedDictionary<float, String>();
     }
 
@@ -28,12 +34,18 @@ public class GameLogic : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //t += Time.deltaTime;
-        //    if(t > 5) {
-        //        killLastCar();
-        //        t = 0;
-        //    }
-	}
+        if (isTimeMode) {
+            t += Time.deltaTime;
+            if (t <= 0) {
+                List<GameObject> c = rankCars();
+                
+                
+                //killLastCar();
+                //t = 0;
+            }
+        }
+
+    }
 
     void killLastCar() {
 
@@ -97,4 +109,44 @@ public class GameLogic : MonoBehaviour {
             }
         }
     }
+
+    public List<GameObject> rankCars() {
+        List<GameObject> Vehicles = new List<GameObject>();
+        List<GameObject> rankedCars = new List<GameObject>();
+        foreach (Transform child in Racers.transform) {
+            Vehicles.Add(child.gameObject);
+        }
+
+        SortedDictionary<int, List<GameObject>> dic = new SortedDictionary<int, List<GameObject>>();
+
+        foreach (GameObject c in Vehicles) {
+            int pos = c.GetComponent<WayPointsScript>().currentWayPoint;
+            if (dic.ContainsKey(pos)) {
+                dic[pos].Add(c);
+            }
+            else {
+                dic.Add(pos, new List<GameObject>() { c });
+            }
+        }
+        foreach (KeyValuePair<int, List<GameObject>> entry in dic) {
+            if (entry.Value.Count == 1) {
+                rankedCars.Add(entry.Value[0]);
+            }
+            else {
+                SortedDictionary<float, GameObject> dicc = new SortedDictionary<float, GameObject>();
+                List<GameObject> cccc = new List<GameObject>();
+                foreach (GameObject c in entry.Value) {
+                    dicc.Add(c.GetComponent<WayPointsScript>().getDistToNextWP(), c);
+                }
+                foreach(KeyValuePair<float, GameObject> ccc in dicc) {
+                    cccc.Add(ccc.Value);
+                }
+                cccc.Reverse();
+                rankedCars.AddRange(cccc);
+            }
+        }
+        rankedCars.Reverse();
+        return rankedCars;
+    }
+
 }
