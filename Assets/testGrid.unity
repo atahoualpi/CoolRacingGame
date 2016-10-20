@@ -1132,7 +1132,7 @@ MonoBehaviour:
   currentLap: 0
   level: {fileID: 911677035}
   currentWayPoint: 0
-  targetWayPoint: {fileID: 564671032}
+  targetWayPoint: {x: 0, y: 0, z: 0}
   GL: {fileID: 274708020}
   distVar: 5.8
   rotVar: 5.4
@@ -2276,7 +2276,7 @@ MonoBehaviour:
   currentLap: 0
   level: {fileID: 911677035}
   currentWayPoint: 0
-  targetWayPoint: {fileID: 881015801}
+  targetWayPoint: {x: 0, y: 0, z: 0}
   GL: {fileID: 274708020}
   distVar: 6
   rotVar: 5.23
@@ -2738,7 +2738,7 @@ MonoBehaviour:
   currentLap: 0
   level: {fileID: 911677035}
   currentWayPoint: 0
-  targetWayPoint: {fileID: 484050624}
+  targetWayPoint: {x: 0, y: 0, z: 0}
   GL: {fileID: 274708020}
   distVar: 5.6
   rotVar: 4.7

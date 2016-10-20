@@ -125,12 +125,17 @@ public class RacerScript : MonoBehaviour {
             //if (Input.GetKey("left")) {
             //    transform.Rotate(0, -0.3f * rb.velocity.magnitude, 0);
             //}
-            if (Mathf.Sign(rb.velocity.magnitude) == Mathf.Sign(transform.forward.magnitude)) {
-                transform.Rotate(0, 0.3f * rb.velocity.magnitude * Input.GetAxis("Horizontal"), 0);
-            }
-            else {
-                transform.Rotate(0, -0.3f * rb.velocity.magnitude * Input.GetAxis("Horizontal"), 0);
-            }
+            //if (transform.InverseTransformDirection(rb.velocity).z > 0) {
+                transform.Rotate(0, 0.4f * transform.InverseTransformDirection(rb.velocity).z * Input.GetAxis("Horizontal"), 0);
+                //Debug.Log("FWD");
+                //Debug.Log(transform.InverseTransformDirection(rb.velocity));
+                //Debug.Log(transform.forward.magnitude);
+            //}
+
+            //else {
+            //    //Debug.Log("BWD");
+            //    transform.Rotate(0, 0.3f * transform.InverseTransformDirection(rb.velocity).z * Input.GetAxis("Horizontal"), 0);
+            //}
 
 
         }

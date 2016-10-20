@@ -24,8 +24,8 @@ public class OpponentMovement : MonoBehaviour {
             //if (rb.velocity.magnitude < currentSpeed*maxSpeed) {
                 rb.AddRelativeForce(0, 0, 10);
 
-            //}
-        
+        //}
+
 
         //if (Input.GetKey("down")) {
         //    if (zVel > -2) {
@@ -34,7 +34,7 @@ public class OpponentMovement : MonoBehaviour {
         //    }
         //    rb.velocity = fwd * zVel;
 
-        
+
 
         //if (Input.GetKey("right")) {
         //    transform.Rotate(0, 0.3f * rb.velocity.magnitude, 0);
@@ -44,7 +44,13 @@ public class OpponentMovement : MonoBehaviour {
         //    transform.Rotate(0, -0.3f * rb.velocity.magnitude, 0);
         //}
 
+
+        //ORIGINAL
         transform.Rotate(0, 0.3f * rb.velocity.magnitude * (currentRot), 0);
+
+        //transform.Rotate(0, 0.5f * transform.InverseTransformDirection(rb.velocity).z * (currentRot), 0);
+        //Debug.Log(currentRot);
+
         turn.rot = currentRot/1.3f;
         //Debug.Log(rb.velocity.z);
     }

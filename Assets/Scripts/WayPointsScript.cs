@@ -12,7 +12,7 @@ public class WayPointsScript : MonoBehaviour {
     public GameObject level;
     private List<Vector3> splines = new List<Vector3>();
     public int currentWayPoint = 0;
-    public Transform targetWayPoint;
+    public Vector3 targetWayPoint;
     public  GameLogic GL;
 
 
@@ -24,6 +24,7 @@ public class WayPointsScript : MonoBehaviour {
 
     private float lapTime;
     private float t;
+    private float stuckTime;
     private int WallHits;
 
 
@@ -51,7 +52,7 @@ public class WayPointsScript : MonoBehaviour {
 
         wayPointList_list.Add(wayPointList_list[0]);
         startPos = wayPointList_list[0];
-        targetWayPoint.position = startPos;
+        targetWayPoint = startPos;
     }
 
     // Update is called once per frame
@@ -60,10 +61,14 @@ public class WayPointsScript : MonoBehaviour {
         // check if we have somewere to walk
         if (currentWayPoint < this.wayPointList_list.Count) {
             if (targetWayPoint == null)
-                targetWayPoint.position = wayPointList_list[currentWayPoint];
+                targetWayPoint = wayPointList_list[currentWayPoint];
             if(isOpponent)
                 walk();
         }
+        //stuckTime += Time.deltaTime;
+        //if(stuckTime > 3f) {
+        //    transform.position = targetWayPoint.position;
+        //}
     }
 
     void walk() {
@@ -73,22 +78,22 @@ public class WayPointsScript : MonoBehaviour {
         //// move towards the target
         //transform.position = Vector3.MoveTowards(transform.position, targetWayPoint.position, speed * Time.deltaTime);
         
-        float angle1 = SignedAngle(transform.forward, targetWayPoint.position - transform.position);
+        float angle1 = SignedAngle(transform.forward, targetWayPoint - transform.position);
         float angle2;
-        Vector3 pointsV = wayPointList_list[currentWayPoint + 1] - targetWayPoint.position;
+        Vector3 pointsV = wayPointList_list[currentWayPoint + 1] - targetWayPoint;
 
-        float anglePoints = SignedAngle(targetWayPoint.position, wayPointList_list[currentWayPoint + 1]);
+        float anglePoints = SignedAngle(targetWayPoint, wayPointList_list[currentWayPoint + 1]);
         if (currentWayPoint < wayPointList_list.Count - 1) {
             angle2 = SignedAngle(transform.forward, wayPointList_list[currentWayPoint + 1] - transform.position);
         }
         else
             angle2 = angle1;
-        float distToTarget = Vector3.Distance(transform.position, targetWayPoint.position);
+        float distToTarget = Vector3.Distance(transform.position, targetWayPoint);
         //Debug.Log(angle1);
         if (distToTarget > distVar) {
-
+            //Debug.Log("not in dist");
             //moveScript.setVel(1 - (angle1 / 90), angle1 / 90);      
-            moveScript.setVel(1, angle1 / 90);
+            moveScript.setVel(1, (angle1 / 90));
         }
         else {
             //float curInfluence = distToTarget / 7;
@@ -111,15 +116,15 @@ public class WayPointsScript : MonoBehaviour {
         //Debug.Log("ROT VAR: " + rotVar);
         if (currentLap != 0) {
             if (currentLap < 9)
-                GL.addLap(t, "DIST VAR: " + distVar + "ROT VAR: " + rotVar + "Wall hits :" + WallHits, false);
+                GL.addLap(t, " DIST VAR: " + distVar + " ROT VAR: " + rotVar + " Wall hits: " + WallHits, false);
             else
-                GL.addLap(t, "DIST VAR: " + distVar + "ROT VAR: " + rotVar + "Wall hits :" + WallHits, true);
+                GL.addLap(t, " DIST VAR: " + distVar + " ROT VAR: " + rotVar + " Wall hits :" + WallHits, true);
         }
         t = 0;
         WallHits = 0;
 
         currentLap++;
-        //distVar = Random.Range(3f, 6f);
+        //distVar = Random.Range(6f, 7f);
         //rotVar = Random.Range(1f, 6f);
         //distVar = 6;
         //rotVar = 5.23f;
@@ -130,7 +135,8 @@ public class WayPointsScript : MonoBehaviour {
     public void EnteredTrigger() {
         currentWayPoint++;
         if (currentWayPoint < wayPointList_list.Count) {
-            targetWayPoint.position = wayPointList_list[currentWayPoint];
+            targetWayPoint = wayPointList_list[currentWayPoint];
+            //stuckTime = 0;
         }
         else {
             Debug.Log("You reached the goal!?!?");
@@ -144,7 +150,7 @@ public class WayPointsScript : MonoBehaviour {
     }
 
     public float getDistToNextWP() {
-        return Vector3.Distance(transform.position, targetWayPoint.position);
+        return Vector3.Distance(transform.position, targetWayPoint);
     }
 
     public void addHit() {
