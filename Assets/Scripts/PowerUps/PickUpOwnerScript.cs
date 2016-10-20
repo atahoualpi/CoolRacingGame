@@ -64,7 +64,7 @@ public class PickUpOwnerScript : MonoBehaviour {
             int tempInt = currOpp.GetComponent<WayPointsScript>().currentWayPoint;
             currOpp.GetComponent<WayPointsScript>().currentWayPoint = GetComponent<WayPointsScript>().currentWayPoint;
             GetComponent<WayPointsScript>().currentWayPoint = tempInt;
-            Transform tempTr = currOpp.GetComponent<WayPointsScript>().targetWayPoint;
+            Vector3 tempTr = currOpp.GetComponent<WayPointsScript>().targetWayPoint;
             currOpp.GetComponent<WayPointsScript>().targetWayPoint = GetComponent<WayPointsScript>().targetWayPoint;
             GetComponent<WayPointsScript>().targetWayPoint = tempTr;
             GetComponent<StealPosScript>().inTrigger = false;

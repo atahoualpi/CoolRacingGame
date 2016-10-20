@@ -16,8 +16,13 @@ public class UIStuffScript : MonoBehaviour {
         PUimage = transform.FindChild("PowerUpImage").GetComponent<Image>();
     }
 
+    void Start()
+    {
+        timeText = transform.FindChild("TimeText").GetComponent<Text>();
+    }
     // Update is called once per frame
     void Update () {
+        Debug.Log(gameLogic.t);
 
     }
 

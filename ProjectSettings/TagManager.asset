@@ -15,6 +15,7 @@ TagManager:
   - centerCol
   - Opponent
   - Wall
+  - GameLogic
   layers:
   - Default
   - TransparentFX
