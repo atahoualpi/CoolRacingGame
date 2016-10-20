@@ -1,25 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI;
 
 public class PickUpOwnerScript : MonoBehaviour {
 
     public String ownedPickUp;
     public bool steal;
+    public bool isDropped;
     GameObject fruit;
     GameObject currOpp;
+    Image puImage;
 
     // Use this for initialization
     void Start () {
         currOpp = null;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        isDropped = false;
+        puImage = GameObject.Find("Canvas").GetComponent<UIStuffScript>().PUimage;
+    }
+
+    // Update is called once per frame
+    void Update () {
         if (Input.GetKeyDown("space"))
         {
             if (ownedPickUp == "Banana" || ownedPickUp == "Banana(Clone)")
             {
+                Destroy(this.transform.FindChild("backBanana(Clone)").gameObject);
                 Banana();
             }
             if (ownedPickUp == "Thief" || ownedPickUp == "Thief(Clone)")
@@ -30,12 +36,16 @@ public class PickUpOwnerScript : MonoBehaviour {
             {
                 GetComponent<RacerScript>().Boost();
             }
+            Color temp = puImage.color;
+            temp.a = 0;
+            puImage.color = temp;
         }
 	
 	}
 
     void Banana()
     {
+        isDropped = true; 
         fruit = Instantiate(Resources.Load("Prefabs/DolBananapeel")) as GameObject;
         fruit.transform.position = transform.position - transform.forward;
         fruit.transform.position = new Vector3(fruit.transform.position.x, 0, fruit.transform.position.z);

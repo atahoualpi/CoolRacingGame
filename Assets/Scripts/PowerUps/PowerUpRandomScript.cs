@@ -59,11 +59,9 @@ public class PowerUpRandomScript : MonoBehaviour {
             puPlaceArray = new Vector3[3] { new Vector3(0, 0.3f, 0), new Vector3(1f, 0.3f, -1f), new Vector3(2f, 0.3f, -2f) };
         }
 
-
     }
     // Use this for initialization
     void Start () {
-
         // choose a power up from the shuffle bag
         numEachPowerUp = 2;
         shuffleBag = new ShuffleBag(powerUpNames.Length);
@@ -73,10 +71,7 @@ public class PowerUpRandomScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if(powerUp == null)
-        {
-            //StartCoroutine(Wait10());   FFiIiIIIXXX THIIIIIS
-        }
+       
 
     }
 
@@ -105,6 +100,12 @@ public class PowerUpRandomScript : MonoBehaviour {
         powerUp = Instantiate(Resources.Load("PowerUps/" + chosenOne)) as GameObject;
         powerUp.transform.parent = this.gameObject.transform;
         powerUp.transform.localPosition = puPlace;
+
+    }
+
+    public void ReInstantiate()
+    {
+            StartCoroutine(Wait10());
     }
 
     IEnumerator Wait10()
