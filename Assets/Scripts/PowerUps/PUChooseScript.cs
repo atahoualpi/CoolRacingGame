@@ -13,24 +13,29 @@ public class PUChooseScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        
 	}
 
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "ActualVehicle")
         {
+            if (other.transform.childCount == 5)
+            {
+                Destroy(other.transform.FindChild("backBanana(Clone)").gameObject);
+            }
             other.GetComponent<PickUpOwnerScript>().ownedPickUp = this.name;
             puImage.sprite = Resources.Load<Sprite>("Images/"+this.name);
             Color temp = puImage.color;
             temp.a = 1f;
             puImage.color = temp;
-            if(this.name == "Banana" || this.name == "Banana(Clone)")
+            if(fruit != null && this.name == "Banana" || this.name == "Banana(Clone)")
             {
                 fruit = Instantiate(Resources.Load("Prefabs/backBanana")) as GameObject;
                 fruit.transform.parent = other.transform;
                 fruit.transform.localPosition = new Vector3(0, fruit.transform.position.z - 0.5f, fruit.transform.position.z - 3f);
             }
+            
             transform.parent.GetComponent<PowerUpRandomScript>().ReInstantiate();
             Destroy(gameObject);
         }
