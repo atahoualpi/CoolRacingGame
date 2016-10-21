@@ -91,7 +91,8 @@ public class GameLogic : MonoBehaviour {
             Destroy(car);
         }
         else if (car.tag == "ActualVehicle") {
-            //Debug.Log("YOU LOSE");
+            Debug.Log("YOU LOSE");
+            stopGame();
         }
 
     }
@@ -147,6 +148,10 @@ public class GameLogic : MonoBehaviour {
         }
         rankedCars.Reverse();
         return rankedCars;
+    }
+
+    public void stopGame() {
+        Time.timeScale = 0;
     }
 
 }

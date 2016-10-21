@@ -314,6 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Racers: {fileID: 330373695}
+  t: 0
 --- !u!4 &274708021
 Transform:
   m_ObjectHideFlags: 0
@@ -1136,6 +1137,7 @@ MonoBehaviour:
   GL: {fileID: 274708020}
   distVar: 5.8
   rotVar: 5.4
+  t: 0
 --- !u!136 &606480296
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1449,6 +1451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PUimage: {fileID: 0}
+  gameLogic: {fileID: 0}
 --- !u!1 &911677035
 GameObject:
   m_ObjectHideFlags: 0
@@ -2280,6 +2283,7 @@ MonoBehaviour:
   GL: {fileID: 274708020}
   distVar: 6
   rotVar: 5.23
+  t: 0
 --- !u!136 &1652757342
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2742,6 +2746,7 @@ MonoBehaviour:
   GL: {fileID: 274708020}
   distVar: 5.6
   rotVar: 4.7
+  t: 0
 --- !u!136 &2017907966
 CapsuleCollider:
   m_ObjectHideFlags: 0
