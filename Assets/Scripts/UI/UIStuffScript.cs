@@ -22,7 +22,7 @@ public class UIStuffScript : MonoBehaviour {
 
     void Start()
     {
-        //lapCount = player_wps.lapCount;
+        lapCount = player_wps.lapCount;
         timeText = transform.FindChild("TimeText").GetComponent<Text>();
         rankText = transform.FindChild("RankText").GetComponent<Text>();
         lapText = transform.FindChild("LapText").GetComponent<Text>();
@@ -43,7 +43,7 @@ public class UIStuffScript : MonoBehaviour {
             }
         }
         rankText.text = playerpos + "/" + cars.Count;
-        //lapText = player_wps.currentLap + "/" + lapCount;
+        lapText.text = "Lap: " + player_wps.currentLap + "/" + lapCount;
     }
 
     string NiceFormat(float totalSeconds)
