@@ -24,7 +24,7 @@ public class PUChooseScript : MonoBehaviour {
             {
                 if(child.name == "backBanana(Clone)")
                 {
-                    Destroy(child);
+                    Destroy(child.gameObject);
                 }
             }
 

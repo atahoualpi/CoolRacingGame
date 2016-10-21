@@ -9,8 +9,9 @@ public class GameLogic : MonoBehaviour {
     private List<GameObject> vehicles;
     private SortedDictionary<float, String> laps;
     public GameObject Racers;
-    private bool isTimeMode = true;
-
+    public bool isTimeMode;
+    public bool won;
+    public bool start;
 
     public float t;
 
@@ -25,26 +26,50 @@ public class GameLogic : MonoBehaviour {
             t = 0;
 
         laps = new SortedDictionary<float, String>();
+        start = false;
     }
 
     // Use this for initialization
     void Start () {
-	
-	}
+        won = true;
+        StartCoroutine(countdown());
+
+    }
+
+    private IEnumerator countdown()
+    {
+        yield return new WaitForSeconds(3f);
+        foreach (Transform child in Racers.transform)
+        {
+            if(child.tag == "Opponent")
+                child.GetComponent<OpponentMovement>().enabled = true;
+            else
+                child.GetComponent<RacerScript>().enabled = true;
+        }
+        start = true;
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        if (isTimeMode) {
-            t -= Time.deltaTime;
-            if (t <= 0) {
-                List<GameObject> c = rankCars();
-                tryDestroy(c[c.Count - 1]);
-                t = 20;
-                //killLastCar();
-                //t = 0;
+        if (start)
+        {
+            if (isTimeMode)
+            {
+                t -= Time.deltaTime;
+                if (t <= 0)
+                {
+                    List<GameObject> c = rankCars();
+                    tryDestroy(c[c.Count - 1]);
+                    t = 20;
+                    //killLastCar();
+                    //t = 0;
+                }
+            }
+            else
+            {
+                t += Time.deltaTime;
             }
         }
-
     }
 
     void killLastCar() {
@@ -152,6 +177,7 @@ public class GameLogic : MonoBehaviour {
 
     public void stopGame() {
         Time.timeScale = 0;
+        won = false;
     }
 
 
