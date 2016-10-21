@@ -35,6 +35,7 @@ public class RacerScript : MonoBehaviour {
     public void Boost()
     {
         acc = 20;
+        StopCoroutine(Boosting());
         StartCoroutine(Boosting());
     }
 
