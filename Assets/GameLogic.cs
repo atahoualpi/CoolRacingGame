@@ -39,7 +39,7 @@ public class GameLogic : MonoBehaviour {
             if (t <= 0) {
                 List<GameObject> c = rankCars();
                 tryDestroy(c[c.Count - 1]);
-                
+                t = 20;
                 //killLastCar();
                 //t = 0;
             }

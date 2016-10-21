@@ -22,6 +22,7 @@ public class UIStuffScript : MonoBehaviour {
     {
         timeText = transform.FindChild("TimeText").GetComponent<Text>();
         rankText = transform.FindChild("RankText").GetComponent<Text>();
+        lapText = transform.FindChild("LapText").GetComponent<Text>();
 
     }
     // Update is called once per frame
@@ -39,7 +40,7 @@ public class UIStuffScript : MonoBehaviour {
             }
         }
         rankText.text = playerpos + "/" + cars.Count;
-
+        //lapText = 
     }
 
     string NiceFormat(float totalSeconds)
