@@ -20,7 +20,7 @@ public class GameLogic : MonoBehaviour {
 
     void Awake() {
         if (isTimeMode)
-            t = 20;
+            t = 5;
         else
             t = 0;
 
@@ -38,8 +38,8 @@ public class GameLogic : MonoBehaviour {
             t -= Time.deltaTime;
             if (t <= 0) {
                 List<GameObject> c = rankCars();
-                Destroy(c[c.Count - 1]);
-                
+                tryDestroy(c[c.Count - 1]);
+                t = 5;
                 //killLastCar();
                 //t = 0;
             }
@@ -154,4 +154,8 @@ public class GameLogic : MonoBehaviour {
         Time.timeScale = 0;
     }
 
+
+    public int playerLap() {
+        return Racers.transform.FindChild("Player").GetComponent<WayPointsScript>().currentLap;
+    }
 }
