@@ -9,7 +9,7 @@ public class GameLogic : MonoBehaviour {
     private List<GameObject> vehicles;
     private SortedDictionary<float, String> laps;
     public GameObject Racers;
-    private bool isTimeMode = false;
+    private bool isTimeMode = true;
 
 
     public float t;
@@ -20,7 +20,7 @@ public class GameLogic : MonoBehaviour {
 
     void Awake() {
         if (isTimeMode)
-            t = 20;
+            t = 5;
         else
             t = 0;
 
@@ -39,14 +39,10 @@ public class GameLogic : MonoBehaviour {
             if (t <= 0) {
                 List<GameObject> c = rankCars();
                 tryDestroy(c[c.Count - 1]);
-                t = 20;
+                t = 5;
                 //killLastCar();
                 //t = 0;
             }
-        }
-        else
-        {
-            t += Time.deltaTime;
         }
 
     }
@@ -96,6 +92,7 @@ public class GameLogic : MonoBehaviour {
         }
         else if (car.tag == "ActualVehicle") {
             Debug.Log("YOU LOSE");
+            stopGame();
         }
 
     }
@@ -153,4 +150,12 @@ public class GameLogic : MonoBehaviour {
         return rankedCars;
     }
 
+    public void stopGame() {
+        Time.timeScale = 0;
+    }
+
+
+    public int playerLap() {
+        return Racers.transform.FindChild("Player").GetComponent<WayPointsScript>().currentLap;
+    }
 }
