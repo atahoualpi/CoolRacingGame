@@ -21,6 +21,7 @@ public class WayPointsScript : MonoBehaviour {
     private float speedVar;
     public float distVar;
     public float rotVar;
+    public int lapCount;
 
     private float lapTime;
     public float t;
@@ -32,7 +33,7 @@ public class WayPointsScript : MonoBehaviour {
     void Start() {
         // put the points you want in this variable (points)
         //level = GameObject.Find("LevelManger");
-        createLaps(10);
+        createLaps(lapCount);
     }
     void Awake() {
         //Time.timeScale = 10f;
@@ -42,6 +43,7 @@ public class WayPointsScript : MonoBehaviour {
         WallHits = 0;
         lapTime = 0;
         currentLap = 0;
+        lapCount = 3;
     }
 
     void createLaps(int laps) {
