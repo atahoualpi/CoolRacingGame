@@ -136,6 +136,7 @@ public class WayPointsScript : MonoBehaviour {
         if (!isOpponent) {
             UI.updateLap(currentLap);
         }
+        
         //distVar = Random.Range(6f, 7f);
         //rotVar = Random.Range(1f, 6f);
         //distVar = 6;

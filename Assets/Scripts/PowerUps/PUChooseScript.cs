@@ -29,6 +29,9 @@ public class PUChooseScript : MonoBehaviour {
             }
 
             other.GetComponent<PickUpOwnerScript>().ownedPickUp = this.name;
+            if(this.name == "Thief" || this.name == "Thief(Clone)") {
+                other.transform.FindChild("Swap Colliders").gameObject.SetActive(true);
+            }
             puImage.sprite = Resources.Load<Sprite>("Images/"+this.name);
             Color temp = puImage.color;
             temp.a = 1f;
