@@ -20,7 +20,7 @@ public class GameLogic : MonoBehaviour {
 
     void Awake() {
         if (isTimeMode)
-            t = 5;
+            t = 20;
         else
             t = 0;
 
@@ -39,7 +39,7 @@ public class GameLogic : MonoBehaviour {
             if (t <= 0) {
                 List<GameObject> c = rankCars();
                 tryDestroy(c[c.Count - 1]);
-                t = 5;
+                t = 20;
                 //killLastCar();
                 //t = 0;
             }
