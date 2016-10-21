@@ -10,6 +10,7 @@ public class PickUpOwnerScript : MonoBehaviour {
     public bool isDropped;
     GameObject fruit;
     GameObject currOpp;
+    GameObject backBanana;
     Image puImage;
 
     public SwapManager SM;
@@ -21,13 +22,23 @@ public class PickUpOwnerScript : MonoBehaviour {
         puImage = GameObject.Find("Canvas").GetComponent<UIStuffScript>().PUimage;
     }
 
+    IEnumerator DestroyBackBanana()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Debug.Log("back: " + backBanana.transform.position);
+
+        Destroy(backBanana);
+    }
+
     // Update is called once per frame
     void Update () {
         if (Input.GetKeyDown("space"))
         {
             if (ownedPickUp == "Banana" || ownedPickUp == "Banana(Clone)")
             {
-                Destroy(this.transform.FindChild("backBanana(Clone)").gameObject);
+                backBanana = this.transform.FindChild("backBanana(Clone)").gameObject;
+                backBanana.GetComponent<Animator>().SetTrigger("drop");
+                StartCoroutine(DestroyBackBanana());
                 Banana();
             }
             if (ownedPickUp == "Thief" || ownedPickUp == "Thief(Clone)")
@@ -50,6 +61,7 @@ public class PickUpOwnerScript : MonoBehaviour {
         isDropped = true; 
         fruit = Instantiate(Resources.Load("Prefabs/DolBananapeel")) as GameObject;
         fruit.transform.position = transform.position - transform.forward;
+        Debug.Log("new: " + fruit.transform.position);
         fruit.transform.position = new Vector3(fruit.transform.position.x, 0, fruit.transform.position.z);
         ownedPickUp = null;
     }
