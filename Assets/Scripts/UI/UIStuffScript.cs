@@ -43,7 +43,6 @@ public class UIStuffScript : MonoBehaviour {
             }
         }
         rankText.text = playerpos + "/" + cars.Count;
-        lapText.text = "Lap: " + player_wps.currentLap + "/" + lapCount;
     }
 
     string NiceFormat(float totalSeconds)
@@ -61,5 +60,9 @@ public class UIStuffScript : MonoBehaviour {
             time = minutes + ":" + seconds;
         }
         return time;
+    }
+
+    public void updateLap(int curLap) {
+        lapText.text = "Lap: " + curLap + "/" + lapCount;
     }
 }

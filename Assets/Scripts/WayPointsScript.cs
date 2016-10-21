@@ -13,7 +13,8 @@ public class WayPointsScript : MonoBehaviour {
     private List<Vector3> splines = new List<Vector3>();
     public int currentWayPoint = 0;
     public Vector3 targetWayPoint;
-    public  GameLogic GL;
+    public GameLogic GL;
+    public UIStuffScript UI;
 
 
 
@@ -128,6 +129,9 @@ public class WayPointsScript : MonoBehaviour {
         WallHits = 0;
 
         currentLap++;
+        if (!isOpponent) {
+            UI.updateLap(currentLap);
+        }
         //distVar = Random.Range(6f, 7f);
         //rotVar = Random.Range(1f, 6f);
         //distVar = 6;

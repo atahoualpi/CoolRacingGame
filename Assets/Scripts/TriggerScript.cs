@@ -21,8 +21,11 @@ public class TriggerScript : MonoBehaviour {
             //Debug.Log(this.transform.parent.transform.position);
             if (other.GetComponent<WayPointsScript>().targetWayPoint.x == this.transform.parent.transform.position.x && other.GetComponent<WayPointsScript>().targetWayPoint.z == this.transform.parent.transform.position.z) {
                 other.GetComponent<WayPointsScript>().EnteredTrigger();
-                if(isStartPoint)
+                if (isStartPoint) {
                     other.GetComponent<WayPointsScript>().newLap();
+
+                }
+
 
             }
         }
