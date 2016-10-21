@@ -20,10 +20,14 @@ public class PUChooseScript : MonoBehaviour {
     {
         if (other.tag == "ActualVehicle")
         {
-            if (other.transform.childCount == 5)
+            foreach (Transform child in other.transform)
             {
-                Destroy(other.transform.FindChild("backBanana(Clone)").gameObject);
+                if(child.name == "backBanana(Clone)")
+                {
+                    Destroy(child);
+                }
             }
+
             other.GetComponent<PickUpOwnerScript>().ownedPickUp = this.name;
             puImage.sprite = Resources.Load<Sprite>("Images/"+this.name);
             Color temp = puImage.color;
