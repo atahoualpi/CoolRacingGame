@@ -27,6 +27,7 @@ public class PUChooseScript : MonoBehaviour {
                     Destroy(child.gameObject);
                 }
             }
+            other.transform.FindChild("Swap Colliders").gameObject.SetActive(false);
 
             other.GetComponent<PickUpOwnerScript>().ownedPickUp = this.name;
             if(this.name == "Thief" || this.name == "Thief(Clone)") {
