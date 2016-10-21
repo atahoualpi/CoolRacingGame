@@ -25,7 +25,6 @@ public class PickUpOwnerScript : MonoBehaviour {
     IEnumerator DestroyBackBanana()
     {
         yield return new WaitForSeconds(0.5f);
-        Debug.Log("back: " + backBanana.transform.position);
 
         Destroy(backBanana);
     }
@@ -43,6 +42,7 @@ public class PickUpOwnerScript : MonoBehaviour {
             }
             if (ownedPickUp == "Thief" || ownedPickUp == "Thief(Clone)")
             {
+                transform.FindChild("Swap Colliders").gameObject.SetActive(false);
                 Thief();
             }
             if (ownedPickUp == "Boost" || ownedPickUp == "Boost(Clone)")
@@ -61,7 +61,6 @@ public class PickUpOwnerScript : MonoBehaviour {
         isDropped = true; 
         fruit = Instantiate(Resources.Load("Prefabs/DolBananapeel")) as GameObject;
         fruit.transform.position = transform.position - transform.forward;
-        Debug.Log("new: " + fruit.transform.position);
         fruit.transform.position = new Vector3(fruit.transform.position.x, 0, fruit.transform.position.z);
         ownedPickUp = null;
     }
