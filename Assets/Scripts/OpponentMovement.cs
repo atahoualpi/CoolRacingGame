@@ -48,6 +48,9 @@ public class OpponentMovement : MonoBehaviour {
         //ORIGINAL
         transform.Rotate(0, 0.3f * rb.velocity.magnitude * (currentRot), 0);
 
+        if(rb.velocity.magnitude < 2f) {
+            transform.Rotate(0, 2f * Mathf.Sign(currentRot),0);
+        }
         //transform.Rotate(0, 0.5f * transform.InverseTransformDirection(rb.velocity).z * (currentRot), 0);
         //Debug.Log(currentRot);
 

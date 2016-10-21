@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SwapScript : MonoBehaviour {
     public SwapManager SM;
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
 	
 	}
 	

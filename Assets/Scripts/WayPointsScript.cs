@@ -30,11 +30,15 @@ public class WayPointsScript : MonoBehaviour {
     private int WallHits;
 
 
+    public int lapLength;
+
+
     // Use this for initialization
     void Start() {
         // put the points you want in this variable (points)
         //level = GameObject.Find("LevelManger");
         createLaps(lapCount);
+        lapLength = level.GetComponent<LevelConstructor>().splinePoints.Count - 1;
     }
     void Awake() {
         //Time.timeScale = 10f;

@@ -12,6 +12,8 @@ public class PickUpOwnerScript : MonoBehaviour {
     GameObject currOpp;
     Image puImage;
 
+    public SwapManager SM;
+
     // Use this for initialization
     void Start () {
         currOpp = null;
@@ -54,22 +56,47 @@ public class PickUpOwnerScript : MonoBehaviour {
 
     void Thief()
     {
-        if (GetComponent<StealPosScript>().inTrigger)
-        {
-            currOpp = GetComponent<StealPosScript>().curOpp;
-            Debug.Log(currOpp.name);
+        //if (GetComponent<StealPosScript>().inTrigger)
+        //{
+        //    currOpp = GetComponent<StealPosScript>().curOpp;
+        //    Debug.Log(currOpp.name);
+        //    Vector3 tempVec = transform.position;
+        //    transform.position = new Vector3(currOpp.transform.position.x, currOpp.transform.position.y, currOpp.transform.position.z);
+        //    currOpp.transform.position = new Vector3(tempVec.x, tempVec.y, tempVec.z);
+        //    int tempInt = currOpp.GetComponent<WayPointsScript>().currentWayPoint;
+        //    currOpp.GetComponent<WayPointsScript>().currentWayPoint = GetComponent<WayPointsScript>().currentWayPoint;
+        //    GetComponent<WayPointsScript>().currentWayPoint = tempInt;
+        //    Vector3 tempTr = currOpp.GetComponent<WayPointsScript>().targetWayPoint;
+        //    currOpp.GetComponent<WayPointsScript>().targetWayPoint = GetComponent<WayPointsScript>().targetWayPoint;
+        //    GetComponent<WayPointsScript>().targetWayPoint = tempTr;
+        //    GetComponent<StealPosScript>().inTrigger = false;
+        //    currOpp = null;
+
+
+        //}
+
+        if(SM.targetCar != null) {
+            currOpp = SM.targetCar;
             Vector3 tempVec = transform.position;
-            transform.position = new Vector3(currOpp.transform.position.x, currOpp.transform.position.y, currOpp.transform.position.z);
-            currOpp.transform.position = new Vector3(tempVec.x, tempVec.y, tempVec.z);
-            int tempInt = currOpp.GetComponent<WayPointsScript>().currentWayPoint;
-            currOpp.GetComponent<WayPointsScript>().currentWayPoint = GetComponent<WayPointsScript>().currentWayPoint;
-            GetComponent<WayPointsScript>().currentWayPoint = tempInt;
-            Vector3 tempTr = currOpp.GetComponent<WayPointsScript>().targetWayPoint;
-            currOpp.GetComponent<WayPointsScript>().targetWayPoint = GetComponent<WayPointsScript>().targetWayPoint;
-            GetComponent<WayPointsScript>().targetWayPoint = tempTr;
-            GetComponent<StealPosScript>().inTrigger = false;
-            currOpp = null;
+            transform.position = currOpp.transform.position;
+            currOpp.transform.position = tempVec;
+
+            WayPointsScript thisCarWPS = GetComponent<WayPointsScript>();
+            WayPointsScript oppCarWPS = currOpp.GetComponent<WayPointsScript>();
+
+            int tempInt = oppCarWPS.currentWayPoint;
+            oppCarWPS.currentWayPoint = thisCarWPS.currentWayPoint;
+            thisCarWPS.currentWayPoint = tempInt;
+            tempVec = oppCarWPS.targetWayPoint;
+            oppCarWPS.targetWayPoint = thisCarWPS.targetWayPoint;
+            thisCarWPS.targetWayPoint = tempVec;
+
+            
+            //GetComponent<StealPosScript>().inTrigger = false;
+
         }
+
+        SM.gameObject.SetActive(false);
         ownedPickUp = null;
     }
 
