@@ -23,6 +23,7 @@ public class UIStuffScript : MonoBehaviour {
     float time;
     public AudioSource loseAudio;
     public AudioSource winAudio;
+    public AudioSource startAudio;
 
     // Use this for initialization
     void Awake () {
@@ -32,6 +33,7 @@ public class UIStuffScript : MonoBehaviour {
 
     void Start()
     {
+
         won = false;
         lapCount = player_wps.lapCount;
         timeText = transform.FindChild("TimeText").GetComponent<Text>();
@@ -44,6 +46,8 @@ public class UIStuffScript : MonoBehaviour {
         loseImage = transform.FindChild("LoseImage").GetComponent<CanvasGroup>();
         time = 4;
         elimText.text = "";
+        startAudio.Play();
+
     }
 
     private IEnumerator sec1point5()
@@ -100,11 +104,14 @@ public class UIStuffScript : MonoBehaviour {
         {
             if(cars.Count == 1 && playerpos == 1)
             {
+                winAudio.Play();
                 WinScreen();
-                Time.timeScale = 0;
+                //Time.timeScale = 0;
             }
             else if (!gameLogic.won)
             {
+                loseAudio.Play();
+
                 LoseScreen();
             }
         }
@@ -114,10 +121,14 @@ public class UIStuffScript : MonoBehaviour {
             {
                 if (playerpos == 1)
                 {
+                    winAudio.Play();
+
                     WinScreen();
                 }
                 else
                 {
+                    loseAudio.Play();
+
                     LoseScreen();
                 }
             }
@@ -149,7 +160,6 @@ public class UIStuffScript : MonoBehaviour {
     {
         winImage.alpha = 1;
         won = true;
-        winAudio.Play();
         Time.timeScale = 0;
     }
 
@@ -159,7 +169,6 @@ public class UIStuffScript : MonoBehaviour {
         if (!won)
         {
             loseImage.alpha = 1;
-            loseAudio.Play();
         }
 
         Time.timeScale = 0;

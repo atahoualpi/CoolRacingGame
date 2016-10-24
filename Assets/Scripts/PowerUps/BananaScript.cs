@@ -8,6 +8,8 @@ public class BananaScript : MonoBehaviour {
 
 
         if (other.tag == "ActualVehicle") {
+            other.GetComponent<PickUpOwnerScript>().spinAudio.Play();
+
             if (other.GetComponent<RacerScript>().spinning) {
                 other.transform.FindChild("GameObject").GetComponent<Animator>().enabled = true;
 
@@ -18,6 +20,8 @@ public class BananaScript : MonoBehaviour {
 
         }
         else if (other.tag == "Opponent") {
+            other.GetComponent<PickUpOwnerScript>().spinAudio.Play();
+
             if (other.GetComponent<OpponentMovement>().spinning) {
                 other.transform.FindChild("GameObject").GetComponent<Animator>().enabled = true;
 
