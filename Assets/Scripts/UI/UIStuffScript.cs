@@ -119,15 +119,18 @@ public class UIStuffScript : MonoBehaviour {
         {
             if (player_wps.currentLap > lapCount)
             {
-                if (playerpos == 1)
+                if (gameLogic.getFirstCar() == "Player")
                 {
                     winAudio.Play();
 
                     WinScreen();
+                    Debug.Log("YOU WIN");
                 }
                 else
                 {
                     loseAudio.Play();
+           
+                    Debug.Log("YOU LOSE");
 
                     LoseScreen();
                 }

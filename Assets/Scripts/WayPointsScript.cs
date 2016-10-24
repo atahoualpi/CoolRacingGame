@@ -48,7 +48,7 @@ public class WayPointsScript : MonoBehaviour {
         WallHits = 0;
         lapTime = 0;
         currentLap = 0;
-        lapCount = 3;
+        lapCount = 1;
     }
 
     void createLaps(int laps) {
@@ -123,16 +123,20 @@ public class WayPointsScript : MonoBehaviour {
         //Debug.Log("LAP TIME: " + t);
         //Debug.Log("DIST VAR: " + distVar);
         //Debug.Log("ROT VAR: " + rotVar);
-        if (currentLap != 0) {
-            if (currentLap < 9)
-                GL.addLap(t, " DIST VAR: " + distVar + " ROT VAR: " + rotVar + " Wall hits: " + WallHits, false);
-            else
-                GL.addLap(t, " DIST VAR: " + distVar + " ROT VAR: " + rotVar + " Wall hits :" + WallHits, true);
-        }
+        //if (currentLap != 0) {
+        //    if (currentLap < 9)
+        //        GL.addLap(t, " DIST VAR: " + distVar + " ROT VAR: " + rotVar + " Wall hits: " + WallHits, false);
+        //    else
+        //        GL.addLap(t, " DIST VAR: " + distVar + " ROT VAR: " + rotVar + " Wall hits :" + WallHits, true);
+        //}
         t = 0;
         WallHits = 0;
 
         currentLap++;
+        if (currentLap > lapCount) {
+            GL.addDoneCar(this.name);
+
+        }
         if (!isOpponent) {
             UI.updateLap(currentLap);
         }

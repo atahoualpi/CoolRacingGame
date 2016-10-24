@@ -212,7 +212,7 @@ public class RacerScript : MonoBehaviour {
             {
                 boostTime += Time.deltaTime;
                 //transform.Translate(0, 0, boostSpeed);
-                if (boostTime >= 5) {
+                if (boostTime >= 3) {
                     boostSpeed -= 0.1f;
                     if (boostSpeed <= 0)
                     {
