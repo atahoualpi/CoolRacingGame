@@ -29,7 +29,10 @@ public class SwapManager : MonoBehaviour {
         foreach (GameObject c in targets) {
             if (c != null) {
                 if (closestCar() == c) {
-                    c.transform.FindChild("SwapIndicator").gameObject.SetActive(true);
+                    if (thisCar.tag != c.tag) {
+                        //Debug.Log(c.name);
+                        c.transform.FindChild("SwapIndicator").gameObject.SetActive(true);
+                    }
                     targetCar = c;
                 }
                 else {
@@ -49,7 +52,7 @@ public class SwapManager : MonoBehaviour {
             }
 
         }
-        Debug.Log(targets.Count);
+        //Debug.Log(targets.Count);
         //Debug.Log(targets.Count);
         targets.Clear();
 

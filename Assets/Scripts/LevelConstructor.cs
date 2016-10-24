@@ -204,9 +204,9 @@ public class LevelConstructor : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetMouseButtonDown(0)) {
-            Start();
-        }
+        //if (Input.GetMouseButtonDown(0)) {
+        //    Start();
+        //}
     }
 
     void nextBlock(Vec2i curPos, String entry) {

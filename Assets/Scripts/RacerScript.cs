@@ -43,8 +43,7 @@ public class RacerScript : MonoBehaviour {
     {
         boosting = true;
         boostTime = 0;
-        GetComponent<PickUpOwnerScript>().ownedPickUp = null;
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         acc = 10;
     }
 
@@ -83,7 +82,8 @@ public class RacerScript : MonoBehaviour {
         //}
         if (spinning) {
             Vector3 fwd = transform.forward;
-            if (Input.GetKey("up")) {
+            if (Input.GetKey("up") || (Input.GetAxis("R2") == 1))
+            {
                 //if (rb.velocity.z < 50) {
 
                 //}
@@ -92,17 +92,19 @@ public class RacerScript : MonoBehaviour {
                 //rb.velocity = fwd * zVel;
 
             }
+
             //else {
             //    //if (zVel > 0) {
             //    //    zVel -= 0.2f;
             //    //    rb.velocity = fwd * zVel;
             //    //}
             //}
-            else if (Input.GetKey("down")) {
+            else if (Input.GetKey("down") || (Input.GetAxis("L2") == 1)) {
                 rb.AddRelativeForce(0, 0, -5);
 
 
             }
+
 
 
             //if (Input.GetKey("down")) {
@@ -129,10 +131,12 @@ public class RacerScript : MonoBehaviour {
             //    transform.Rotate(0, -0.3f * rb.velocity.magnitude, 0);
             //}
             //if (transform.InverseTransformDirection(rb.velocity).z > 0) {
-                transform.Rotate(0, 0.4f * transform.InverseTransformDirection(rb.velocity).z * Input.GetAxis("Horizontal"), 0);
-                //Debug.Log("FWD");
-                //Debug.Log(transform.InverseTransformDirection(rb.velocity));
-                //Debug.Log(transform.forward.magnitude);
+            //transform.Rotate(0, 0.4f * transform.InverseTransformDirection(rb.velocity).z * Input.GetAxis("Horizontal"), 0);
+            transform.Rotate(0, 0.4f * rb.velocity.magnitude * Input.GetAxis("Horizontal"), 0);
+
+            //Debug.Log("FWD");
+            //Debug.Log(transform.InverseTransformDirection(rb.velocity));
+            //Debug.Log(transform.forward.magnitude);
             //}
 
             //else {
