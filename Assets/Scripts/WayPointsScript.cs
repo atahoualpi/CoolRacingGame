@@ -41,7 +41,7 @@ public class WayPointsScript : MonoBehaviour {
         lapLength = level.GetComponent<LevelConstructor>().splinePoints.Count - 1;
     }
     void Awake() {
-        //Time.timeScale = 10f;
+        //Time.timeScale = 5f;
 
         t = 0;
 
@@ -68,9 +68,9 @@ public class WayPointsScript : MonoBehaviour {
     void Update() {
         t += Time.deltaTime;
         // check if we have somewere to walk
-        if (currentWayPoint < this.wayPointList_list.Count) {
-            if (targetWayPoint == null)
-                targetWayPoint = wayPointList_list[currentWayPoint];
+        if (currentWayPoint < this.wayPointList_list.Count-1) {
+            //if (targetWayPoint == null)
+            //    targetWayPoint = wayPointList_list[currentWayPoint];
             if(isOpponent)
                 walk();
         }

@@ -92,7 +92,7 @@ public class UIStuffScript : MonoBehaviour {
         }
         else
         {
-            if (player_wps.currentLap == lapCount)
+            if (player_wps.currentLap > lapCount)
             {
                 if (playerpos == 1)
                 {

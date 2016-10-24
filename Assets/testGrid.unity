@@ -2260,6 +2260,9 @@ GameObject:
   - 136: {fileID: 606480296}
   - 114: {fileID: 606480295}
   - 114: {fileID: 606480294}
+  - 114: {fileID: 606480302}
+  - 114: {fileID: 606480301}
+  - 114: {fileID: 606480300}
   m_Layer: 0
   m_Name: Opponent (2)
   m_TagString: Opponent
@@ -2281,6 +2284,8 @@ MonoBehaviour:
   jumps: 0
   rb: {fileID: 606480298}
   turn: {fileID: 1997347090}
+  spinning: 0
+  anim: {fileID: 0}
 --- !u!114 &606480295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2362,6 +2367,47 @@ Transform:
   - {fileID: 155105566}
   m_Father: {fileID: 330373696}
   m_RootOrder: 2
+--- !u!114 &606480300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 606480293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5951b5a18e2c96d4ba81dcec7237697a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownedPickUp: 
+  steal: 0
+  isDropped: 0
+  currOpp: {fileID: 0}
+  isPlayer: 0
+  SM: {fileID: 0}
+--- !u!114 &606480301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 606480293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85c623fdb1eae9f47875a53d27563499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &606480302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 606480293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f20b9156085218542a59285ee51caa02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PUOS: {fileID: 0}
+  SM: {fileID: 0}
 --- !u!4 &640984834 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 72ca0038d15998141b8def1d1a3944d9, type: 3}
@@ -3826,6 +3872,9 @@ GameObject:
   - 136: {fileID: 1652757342}
   - 114: {fileID: 1652757341}
   - 114: {fileID: 1652757340}
+  - 114: {fileID: 1652757348}
+  - 114: {fileID: 1652757347}
+  - 114: {fileID: 1652757346}
   m_Layer: 0
   m_Name: Opponent (1)
   m_TagString: Opponent
@@ -3847,6 +3896,8 @@ MonoBehaviour:
   jumps: 0
   rb: {fileID: 1652757344}
   turn: {fileID: 1342883482}
+  spinning: 0
+  anim: {fileID: 0}
 --- !u!114 &1652757341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3928,6 +3979,47 @@ Transform:
   - {fileID: 1421036791}
   m_Father: {fileID: 330373696}
   m_RootOrder: 1
+--- !u!114 &1652757346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1652757339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5951b5a18e2c96d4ba81dcec7237697a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownedPickUp: 
+  steal: 0
+  isDropped: 0
+  currOpp: {fileID: 0}
+  isPlayer: 0
+  SM: {fileID: 0}
+--- !u!114 &1652757347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1652757339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85c623fdb1eae9f47875a53d27563499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1652757348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1652757339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f20b9156085218542a59285ee51caa02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PUOS: {fileID: 0}
+  SM: {fileID: 0}
 --- !u!1 &1656883268
 GameObject:
   m_ObjectHideFlags: 0
@@ -4533,6 +4625,9 @@ GameObject:
   - 136: {fileID: 2017907966}
   - 114: {fileID: 2017907965}
   - 114: {fileID: 2017907964}
+  - 114: {fileID: 2017907972}
+  - 114: {fileID: 2017907971}
+  - 114: {fileID: 2017907970}
   m_Layer: 0
   m_Name: Opponent
   m_TagString: Opponent
@@ -4554,6 +4649,8 @@ MonoBehaviour:
   jumps: 0
   rb: {fileID: 2017907968}
   turn: {fileID: 965342842}
+  spinning: 0
+  anim: {fileID: 0}
 --- !u!114 &2017907965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4635,6 +4732,47 @@ Transform:
   - {fileID: 1656883269}
   m_Father: {fileID: 330373696}
   m_RootOrder: 0
+--- !u!114 &2017907970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2017907963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5951b5a18e2c96d4ba81dcec7237697a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownedPickUp: 
+  steal: 0
+  isDropped: 0
+  currOpp: {fileID: 0}
+  isPlayer: 0
+  SM: {fileID: 0}
+--- !u!114 &2017907971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2017907963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85c623fdb1eae9f47875a53d27563499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2017907972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2017907963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f20b9156085218542a59285ee51caa02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PUOS: {fileID: 0}
+  SM: {fileID: 0}
 --- !u!1 &2084203551
 GameObject:
   m_ObjectHideFlags: 0

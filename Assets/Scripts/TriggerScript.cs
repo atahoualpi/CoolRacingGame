@@ -29,6 +29,9 @@ public class TriggerScript : MonoBehaviour {
 
 
             }
+            else {
+
+            }
         }
         if (other.tag == "ActualVehicle") {
 
