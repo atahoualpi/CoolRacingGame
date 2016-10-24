@@ -19,6 +19,11 @@ public class PickUpOwnerScript : MonoBehaviour {
 
     public SwapManager SM;
 
+    public AudioSource boostAudio;
+    public AudioSource bananaAudio;
+    public AudioSource swapAudio;
+
+
     // Use this for initialization
     void Start() {
         currOpp = null;
@@ -34,21 +39,29 @@ public class PickUpOwnerScript : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
-        if ((Input.GetKeyDown("space") || (Input.GetButtonDown("Fire2")) && this.tag == "ActualVehicle") || usePowerup) {
+    void Update()
+    {
+        if ((Input.GetKeyDown("space") || (Input.GetButtonDown("Fire2")) && this.tag == "ActualVehicle") || usePowerup)
+        {
             usePowerup = false;
-            if (ownedPickUp == "Banana" || ownedPickUp == "Banana(Clone)") {
+            if (ownedPickUp == "Banana" || ownedPickUp == "Banana(Clone)")
+            {
                 backBanana = this.transform.FindChild("backBanana(Clone)").gameObject;
                 backBanana.GetComponent<Animator>().SetTrigger("drop");
                 StartCoroutine(DestroyBackBanana());
                 Banana();
             }
-            if (ownedPickUp == "Thief" || ownedPickUp == "Thief(Clone)") {
+            if (ownedPickUp == "Thief" || ownedPickUp == "Thief(Clone)")
+            {
                 transform.FindChild("Swap Colliders").gameObject.SetActive(false);
                 Thief();
             }
-            if (ownedPickUp == "Boost" || ownedPickUp == "Boost(Clone)") {
-                if(isPlayer)
+
+            if (ownedPickUp == "Boost" || ownedPickUp == "Boost(Clone)")
+            {
+                boostAudio.Play();
+
+                if (isPlayer)
                     GetComponent<RacerScript>().Boost();
                 else
                     GetComponent<OpponentMovement>().Boost();
@@ -56,17 +69,21 @@ public class PickUpOwnerScript : MonoBehaviour {
                 ownedPickUp = null;
 
             }
-            if (isPlayer) {
+            if (isPlayer)
+            {
                 Color temp = puImage.color;
                 temp.a = 0;
                 puImage.color = temp;
             }
         }
-
     }
 
-    void Banana() {
-        isDropped = true;
+    void Banana()
+    {
+        bananaAudio.Play();
+
+        isDropped = true; 
+
         fruit = Instantiate(Resources.Load("Prefabs/DolBananapeel")) as GameObject;
         fruit.transform.position = transform.position - transform.forward;
         fruit.transform.position = new Vector3(fruit.transform.position.x, 0, fruit.transform.position.z);
@@ -114,6 +131,7 @@ public class PickUpOwnerScript : MonoBehaviour {
             oppCarWPS.targetWayPoint = thisCarWPS.targetWayPoint;
             thisCarWPS.targetWayPoint = tempVec;
 
+            swapAudio.Play();
 
             //GetComponent<StealPosScript>().inTrigger = false;
             currOpp.transform.FindChild("SwapIndicator").gameObject.SetActive(false);

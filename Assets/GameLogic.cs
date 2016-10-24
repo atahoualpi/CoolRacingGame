@@ -12,10 +12,13 @@ public class GameLogic : MonoBehaviour {
     public bool isTimeMode;
     public bool won;
     public bool start;
+    public string carName;
 
     public float t;
 
     int count = 0;
+
+    AudioSource elimAudio;
 
 
 
@@ -27,12 +30,14 @@ public class GameLogic : MonoBehaviour {
 
         laps = new SortedDictionary<float, String>();
         start = false;
+        carName = null;
     }
 
     // Use this for initialization
     void Start () {
         won = true;
         StartCoroutine(countdown());
+        elimAudio = GetComponent<AudioSource>();
 
     }
 
@@ -113,6 +118,8 @@ public class GameLogic : MonoBehaviour {
     }
     void tryDestroy(GameObject car) {
         if (car.tag == "Opponent") {
+            carName = car.name;
+            elimAudio.Play();
             Destroy(car);
         }
         else if (car.tag == "ActualVehicle") {

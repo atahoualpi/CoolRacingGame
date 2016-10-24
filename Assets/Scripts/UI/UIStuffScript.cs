@@ -10,6 +10,7 @@ public class UIStuffScript : MonoBehaviour {
     private Text rankText;
     private Text timeText;
     private Text goText;
+    private Text elimText;
 
     public Image PUimage;
     public GameLogic gameLogic;
@@ -20,6 +21,9 @@ public class UIStuffScript : MonoBehaviour {
     private CanvasGroup loseImage;
     private bool won;
     float time;
+    AudioSource[] audios;
+    AudioSource loseAudio;
+    AudioSource winAudio;
 
     // Use this for initialization
     void Awake () {
@@ -35,10 +39,17 @@ public class UIStuffScript : MonoBehaviour {
         rankText = transform.FindChild("RankText").GetComponent<Text>();
         lapText = transform.FindChild("LapText").GetComponent<Text>();
         goText = transform.FindChild("GOText").GetComponent<Text>();
+        elimText = transform.FindChild("EliminationText").GetComponent<Text>();
 
         winImage = transform.FindChild("WinImage").GetComponent<CanvasGroup>();
         loseImage = transform.FindChild("LoseImage").GetComponent<CanvasGroup>();
         time = 4;
+        elimText.text = "";
+        //loseaudio = transform.FindChild("LoseImage").GetComponent<AudioSource>();
+        //audio = GetComponent<AudioSource>();
+        audios = GetComponents<AudioSource>();
+        loseAudio = audios[0];
+        winAudio = audios[1];
 
     }
 
@@ -46,6 +57,13 @@ public class UIStuffScript : MonoBehaviour {
     {
         yield return new WaitForSeconds(1.5f);
         goText.text = "";
+    }
+
+    private IEnumerator sec2()
+    {
+        yield return new WaitForSeconds(2f);
+        gameLogic.carName = null;
+        elimText.text = "";
     }
 
     // Update is called once per frame
@@ -77,6 +95,13 @@ public class UIStuffScript : MonoBehaviour {
         }
         rankText.text = playerpos + "/" + cars.Count;
         lapText.text = "Lap: " + player_wps.currentLap + "/" + lapCount;
+
+        if (gameLogic.carName != null)
+        {
+            elimText.text = gameLogic.carName + " eliminated";
+            StopCoroutine(sec2());
+            StartCoroutine(sec2());
+        }
 
         if (gameLogic.isTimeMode)
         {
@@ -131,11 +156,19 @@ public class UIStuffScript : MonoBehaviour {
     {
         winImage.alpha = 1;
         won = true;
+        winAudio.Play();
+        Time.timeScale = 0;
     }
 
     void LoseScreen()
     {
+        loseAudio.Play();
+
         if (!won)
+        {
             loseImage.alpha = 1;
+        }
+          
+        Time.timeScale = 0;
     }
 }

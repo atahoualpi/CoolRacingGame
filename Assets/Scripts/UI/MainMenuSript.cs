@@ -3,58 +3,57 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class MainMenuSript : MonoBehaviour {
-    private Text titleText;
-    float r, g, b;
-	// Use this for initialization
-	void Start () {
-        titleText = transform.FindChild("TitleText").GetComponent<Text>();
-        r = 191/255f;
-        g = 100 / 255f;
-        b = 100 / 255f;
-        titleText.color = new Color(r, g, b, 1);
+    private Button lapMode;
+    private Button timeMode;
+
+    Color highlighted;
+    Color greyed;
+    ColorBlock tempCol;
+
+    public LevelChangeScript lvl;
+
+    // Use this for initialization
+    void Start () {
+        lapMode = transform.FindChild("LapModeButton").GetComponent<Button>();
+        timeMode = transform.FindChild("TimeModeButton").GetComponent<Button>();
+
+        highlighted = new Color(0.7f, 0.96f, 0.62f, 1f);
+        greyed = new Color(0.18f, 0.24f, 0.15f, 1f);
+
+        //lapMode.Select();
+        ChooseBtn(1);
+        lvl.chooseScene = 1;
 
     }
 
     // Update is called once per frame
     void Update () {
-        //if (r == 0.749f)
-        //{
-        //    b += 1 / 255f;
-        //    titleText.color = new Color(r, g, b, 1);
+        
 
+    }
 
-        //    if (b == 191 / 255f)
-        //    {
-        //        r -= 1 / 255f;
-        //        titleText.color = new Color(r, g, b, 1);
+    public void ChooseBtn(int index)
+    {
+        Button btn1;
+        Button btn2;
+        if (index == 1)
+        {
+            btn1 = lapMode;
+            btn2 = timeMode;
+            lvl.chooseScene = 1;
+        }
+        else
+        {
+            btn1 = timeMode;
+            btn2 = lapMode;
+            lvl.chooseScene = 2;
+        }
+        tempCol = btn1.colors;
+        tempCol.normalColor = highlighted;
+        btn1.colors = tempCol;
 
-
-        //        if (r == 100 / 255f)
-        //        {
-        //            g += 1 / 255f;
-        //            titleText.color = new Color(r, g, b, 1);
-
-
-        //            if (g == 191 / 255f)
-        //            {
-        //                b -= 1 / 255f;
-        //                titleText.color = new Color(r, g, b, 1);
-
-        //                if (b == 100 / 255f)
-        //                {
-        //                    r += 1 / 255f;
-        //                    titleText.color = new Color(r, g, b, 1);
-
-        //                    if (r == 192 / 255f)
-        //                    {
-        //                        g -= 1 / 255f;
-        //                        titleText.color = new Color(r, g, b, 1);
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-
+        tempCol = btn2.colors;
+        tempCol.normalColor = greyed;
+        btn2.colors = tempCol;
     }
 }
