@@ -112,12 +112,14 @@ public class UIStuffScript : MonoBehaviour {
         {
             if (player_wps.currentLap > lapCount)
             {
-                if (playerpos == 1)
+                if (gameLogic.getFirstCar() == "Player")
                 {
                     WinScreen();
+                    Debug.Log("YOU WIN");
                 }
-                else
-                {
+                else {
+                    Debug.Log("YOU LOSE");
+
                     LoseScreen();
                 }
             }

@@ -127,6 +127,11 @@ public class PickUpOwnerScript : MonoBehaviour {
             int tempInt = oppCarWPS.currentWayPoint;
             oppCarWPS.currentWayPoint = thisCarWPS.currentWayPoint;
             thisCarWPS.currentWayPoint = tempInt;
+
+            oppCarWPS.currentWayPoint = convertCWP(oppCarWPS.currentWayPoint, oppCarWPS.currentLap, oppCarWPS.lapLength);
+            thisCarWPS.currentWayPoint = convertCWP(thisCarWPS.currentWayPoint, thisCarWPS.currentLap, thisCarWPS.lapLength);
+
+
             tempVec = oppCarWPS.targetWayPoint;
             oppCarWPS.targetWayPoint = thisCarWPS.targetWayPoint;
             thisCarWPS.targetWayPoint = tempVec;
@@ -141,6 +146,11 @@ public class PickUpOwnerScript : MonoBehaviour {
         }
         SM.gameObject.SetActive(false);
         ownedPickUp = null;
+    }
+
+    int convertCWP(int cWP, int cL, int lapLength) {
+        int baseCWP = cWP % lapLength;
+        return baseCWP + ((cL - 1) * lapLength);
     }
 
     public void oppUsePowerUp() {

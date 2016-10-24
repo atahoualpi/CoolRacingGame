@@ -7,6 +7,7 @@ using System;
 public class GameLogic : MonoBehaviour {
 
     private List<GameObject> vehicles;
+    private List<String> doneCars = new List<String>();
     private SortedDictionary<float, String> laps;
     public GameObject Racers;
     public bool isTimeMode;
@@ -129,7 +130,7 @@ public class GameLogic : MonoBehaviour {
 
     }
 
-    public void addLap(float t, String s, bool done) {
+    public void addLap(float t, String s, bool done, GameObject c) {
         laps.Add(t, s);
 
         if (done) {
@@ -141,6 +142,15 @@ public class GameLogic : MonoBehaviour {
                 Debug.Log("LAP TIME: " + entry.Key + " " + entry.Value);
             }
         }
+    }
+
+    public void addDoneCar(String c) {
+        Debug.Log(c);
+        doneCars.Add(c);
+    }
+
+    public String getFirstCar() {
+        return doneCars[0];
     }
 
     public List<GameObject> rankCars() {
