@@ -21,9 +21,8 @@ public class UIStuffScript : MonoBehaviour {
     private CanvasGroup loseImage;
     private bool won;
     float time;
-    AudioSource[] audios;
-    AudioSource loseAudio;
-    AudioSource winAudio;
+    public AudioSource loseAudio;
+    public AudioSource winAudio;
 
     // Use this for initialization
     void Awake () {
@@ -45,12 +44,6 @@ public class UIStuffScript : MonoBehaviour {
         loseImage = transform.FindChild("LoseImage").GetComponent<CanvasGroup>();
         time = 4;
         elimText.text = "";
-        //loseaudio = transform.FindChild("LoseImage").GetComponent<AudioSource>();
-        //audio = GetComponent<AudioSource>();
-        audios = GetComponents<AudioSource>();
-        loseAudio = audios[0];
-        winAudio = audios[1];
-
     }
 
     private IEnumerator sec1point5()
@@ -162,13 +155,13 @@ public class UIStuffScript : MonoBehaviour {
 
     void LoseScreen()
     {
-        loseAudio.Play();
 
         if (!won)
         {
             loseImage.alpha = 1;
+            loseAudio.Play();
         }
-          
+
         Time.timeScale = 0;
     }
 }
