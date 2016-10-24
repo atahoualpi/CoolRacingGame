@@ -15,6 +15,11 @@ public class PickUpOwnerScript : MonoBehaviour {
 
     public SwapManager SM;
 
+    public AudioSource boostAudio;
+    public AudioSource bananaAudio;
+    public AudioSource swapAudio;
+
+
     // Use this for initialization
     void Start () {
         currOpp = null;
@@ -47,6 +52,7 @@ public class PickUpOwnerScript : MonoBehaviour {
             }
             if (ownedPickUp == "Boost" || ownedPickUp == "Boost(Clone)")
             {
+                boostAudio.Play();
                 GetComponent<RacerScript>().Boost();
             }
             Color temp = puImage.color;
@@ -58,6 +64,8 @@ public class PickUpOwnerScript : MonoBehaviour {
 
     void Banana()
     {
+        bananaAudio.Play();
+
         isDropped = true; 
         fruit = Instantiate(Resources.Load("Prefabs/DolBananapeel")) as GameObject;
         fruit.transform.position = transform.position - transform.forward;
@@ -102,7 +110,7 @@ public class PickUpOwnerScript : MonoBehaviour {
             oppCarWPS.targetWayPoint = thisCarWPS.targetWayPoint;
             thisCarWPS.targetWayPoint = tempVec;
 
-            
+            swapAudio.Play();
             //GetComponent<StealPosScript>().inTrigger = false;
 
         }
