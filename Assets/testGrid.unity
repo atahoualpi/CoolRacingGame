@@ -2734,6 +2734,7 @@ MonoBehaviour:
   targetWayPoint: {x: 0, y: 0, z: 0}
   GL: {fileID: 274708020}
   UI: {fileID: 0}
+  rb: {fileID: 606480298}
   distVar: 5.8
   rotVar: 5.4
   lapCount: 0
@@ -4936,6 +4937,7 @@ MonoBehaviour:
   targetWayPoint: {x: 0, y: 0, z: 0}
   GL: {fileID: 274708020}
   UI: {fileID: 0}
+  rb: {fileID: 1652757344}
   distVar: 6
   rotVar: 5.23
   lapCount: 0
@@ -6214,6 +6216,7 @@ MonoBehaviour:
   targetWayPoint: {x: 0, y: 0, z: 0}
   GL: {fileID: 274708020}
   UI: {fileID: 0}
+  rb: {fileID: 2017907968}
   distVar: 5.6
   rotVar: 4.7
   lapCount: 0
