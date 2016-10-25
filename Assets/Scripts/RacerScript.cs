@@ -23,10 +23,11 @@ public class RacerScript : MonoBehaviour {
     public Rigidbody rb;
     public Animator anim;
     private float acc;
-
+    Coroutine CR = null;
 
     // Use this for initialization
     void Awake () {
+        
         spinning = true;
         acc = 10;
         //cameraObject = this.transform.Find("Main Camera").gameObject;
@@ -35,8 +36,10 @@ public class RacerScript : MonoBehaviour {
     public void Boost()
     {
         acc = 20;
-        StopCoroutine(Boosting());
-        StartCoroutine(Boosting());
+        if(CR != null)
+            StopCoroutine(CR);
+
+        CR = StartCoroutine(Boosting());
     }
 
     IEnumerator Boosting()
@@ -131,8 +134,8 @@ public class RacerScript : MonoBehaviour {
             //    transform.Rotate(0, -0.3f * rb.velocity.magnitude, 0);
             //}
             //if (transform.InverseTransformDirection(rb.velocity).z > 0) {
-            //transform.Rotate(0, 0.4f * transform.InverseTransformDirection(rb.velocity).z * Input.GetAxis("Horizontal"), 0);
-            transform.Rotate(0, 0.4f * rb.velocity.magnitude * Input.GetAxis("Horizontal"), 0);
+            transform.Rotate(0, 0.4f * transform.InverseTransformDirection(rb.velocity).z * Input.GetAxis("Horizontal"), 0);
+            //transform.Rotate(0, 0.4f * rb.velocity.magnitude * Input.GetAxis("Horizontal"), 0);
 
             //Debug.Log("FWD");
             //Debug.Log(transform.InverseTransformDirection(rb.velocity));
@@ -238,8 +241,7 @@ public class RacerScript : MonoBehaviour {
             /////////////////////////////////
 
             //transform.Translate(topStrafeSpeed * Input.GetAxis("Horizontal"), 0, 0);
-            if (Input.GetButtonDown("Fire2"))
-                Debug.Log(Input.GetButtonDown("Fire2"));
+
 
 
             //if (Input.GetKey("left") || Input.GetKey("a"))

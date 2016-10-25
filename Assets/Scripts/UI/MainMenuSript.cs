@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 public class MainMenuSript : MonoBehaviour {
     private Button lapMode;
@@ -10,6 +11,8 @@ public class MainMenuSript : MonoBehaviour {
     private Button mode;
     private Button selected;
     public bool isTime;
+    private bool edged;
+    String dir;
 
     Color highlighted;
     Color greyed;
@@ -21,6 +24,8 @@ public class MainMenuSript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
+        edged = false;
         Cursor.visible = false;
         isTime = false;
         buttonSelector = 1;
@@ -44,21 +49,31 @@ public class MainMenuSript : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+
+
         if(Input.GetAxis("Horizontal") < -0.1) {
             ChooseMode();
         }
         else if (Input.GetAxis("Horizontal") > 0.1) {
             ChooseMode();
         }
+
+        GetLeftDir();
+
+
         if (Input.GetKeyDown("up"))
-        {
+        {                                            
             if (buttonSelector != 1)
             {
                 buttonSelector -= 1;
                 ChooseBtn(buttonSelector);
             }
         }
-        else if (Input.GetKeyDown("down"))
+        //if(JSM.getLeftDir((float)Input.GetAxis("LeftH"), (float)Input.GetAxis("LeftV")) != "") {
+        //    Debug.Log(JSM.getLeftDir((float)Input.GetAxis("LeftH"), (float)Input.GetAxis("LeftV")));
+        //}
+        //Debug.Log(JSM.getLeftDir());
+        if (Input.GetKeyDown("down"))
         {
             if (buttonSelector != 3)
             {
@@ -72,6 +87,20 @@ public class MainMenuSript : MonoBehaviour {
 
         }
 
+    }
+
+    void selectUp() {
+        if (buttonSelector != 1) {
+            buttonSelector -= 1;
+            ChooseBtn(buttonSelector);
+        }
+    }
+
+    void selectDown() {
+        if (buttonSelector != 3) {
+            buttonSelector += 1;
+            ChooseBtn(buttonSelector);
+        }
     }
 
     public void ChooseBtn(int selector)
@@ -144,4 +173,76 @@ public class MainMenuSript : MonoBehaviour {
         tempCol.normalColor = greyed;
         btn2.colors = tempCol;
     }
+
+    void GetLeftDir() {
+        float x = Input.GetAxis("LeftH");
+        float y = Input.GetAxis("LeftV");
+        float magx = Mathf.Abs(x);
+        float magy = Mathf.Abs(y);
+
+        if (Mathf.Sqrt(Mathf.Pow(magx, 2) + Mathf.Pow(magy, 2)) > 0.8) {
+            if (!edged) {
+                edged = true;
+                //if (x >= 0 && magx >= magy) {
+                //}
+                //else if (x <= 0 && magx >= magy) {
+                //}
+                if (y >= 0 && magy >= magx) {
+                    //Debug.Log("up");
+                    selectUp();
+
+                }
+                else if (y <= 0 && magy >= magx) {
+                    //Debug.Log("down");
+                    selectDown();
+
+                }
+            }
+        }
+        else {
+            //Debug.Log("CENTERED");
+            edged = false;
+        }
+    }
+
+    //String getLeftDir(float x, float y) {
+
+    //    float magx = Mathf.Abs(x);
+    //    float magy = Mathf.Abs(y);
+
+    //    if (Mathf.Sqrt(Mathf.Pow(magx, 2) + Mathf.Pow(magy, 2)) > 0.8) {
+    //        if (!edged) {
+    //            edged = true;
+    //            if (x >= 0 && magx >= magy) {
+    //                Debug.Log("RIGHT");
+    //                return "right";
+    //            }
+    //            else if (x <= 0 && magx >= magy) {
+    //                Debug.Log("left");
+
+    //                return "left";
+
+    //            }
+    //            else if (y >= 0 && magy >= magx) {
+    //                //Debug.Log("up");
+
+    //                return "up";
+
+    //            }
+    //            else if (y <= 0 && magy >= magx) {
+    //                Debug.Log("down");
+
+    //                return "down";
+
+    //            }
+    //        }
+    //        return "";
+
+    //    }
+    //    else {
+    //        //Debug.Log("CENTERED");
+    //        edged = false;
+    //        return "";
+    //    }
+    //}
 }
