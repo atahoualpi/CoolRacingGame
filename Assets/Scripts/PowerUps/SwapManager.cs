@@ -13,7 +13,7 @@ public class SwapManager : MonoBehaviour {
 
     void Awake() {
         targets = new List<GameObject>();
-        targetCar = new GameObject();
+        targetCar = null;
     }
 
     void Start () {
