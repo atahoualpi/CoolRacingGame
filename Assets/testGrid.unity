@@ -896,7 +896,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Racers: {fileID: 330373695}
-  isTimeMode: 1
+  isTimeMode: 0
   won: 0
   start: 0
   carName: 
