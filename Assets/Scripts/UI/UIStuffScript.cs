@@ -23,6 +23,9 @@ public class UIStuffScript : MonoBehaviour {
     float time;
     public AudioSource loseAudio;
     public AudioSource winAudio;
+    public AudioSource startAudio;
+    public AudioSource soundtrack;
+    bool isOver;
 
     // Use this for initialization
     void Awake () {
@@ -32,6 +35,7 @@ public class UIStuffScript : MonoBehaviour {
 
     void Start()
     {
+        isOver = false;
         won = false;
         lapCount = player_wps.lapCount;
         timeText = transform.FindChild("TimeText").GetComponent<Text>();
@@ -44,6 +48,8 @@ public class UIStuffScript : MonoBehaviour {
         loseImage = transform.FindChild("LoseImage").GetComponent<CanvasGroup>();
         time = 4;
         elimText.text = "";
+        startAudio.Play();
+
     }
 
     private IEnumerator sec1point5()
@@ -60,67 +66,69 @@ public class UIStuffScript : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
-        if (!gameLogic.start)
+    void Update() {
+        if (!isOver)
         {
-            time -= Time.deltaTime;
-            if ((int)time > 0)
-                goText.text = "" + (int)time;
-            else
+            if (!gameLogic.start)
             {
-                goText.color = Color.green;
-                goText.text = "GO";
-                StartCoroutine(sec1point5());
+                time -= Time.deltaTime;
+                if ((int)time > 0)
+                    goText.text = "" + (int)time;
+                else
+                {
+                    goText.color = Color.green;
+                    goText.text = "GO";
+                    StartCoroutine(sec1point5());
+                }
             }
-        }
 
-        //timeText.text = Math.Round((Decimal)gameLogic.t, 2).ToString().Replace(".",":");
-        timeText.text = NiceFormat(gameLogic.t);
-        int playerpos = -1;
-        List<GameObject> cars = gameLogic.rankCars();
-        for(int i = 0; i < cars.Count; i++)
-        {
-            if(cars[i].tag == "ActualVehicle")
+            //timeText.text = Math.Round((Decimal)gameLogic.t, 2).ToString().Replace(".",":");
+            timeText.text = NiceFormat(gameLogic.t);
+            int playerpos = -1;
+            List<GameObject> cars = gameLogic.rankCars();
+            for (int i = 0; i < cars.Count; i++)
             {
-                playerpos = i+1;
-                break;
+                if (cars[i].tag == "ActualVehicle")
+                {
+                    playerpos = i + 1;
+                    break;
+                }
             }
-        }
-        rankText.text = playerpos + "/" + cars.Count;
-        lapText.text = "Lap: " + player_wps.currentLap + "/" + lapCount;
+            rankText.text = playerpos + "/" + cars.Count;
+            lapText.text = "Lap: " + player_wps.currentLap + "/" + lapCount;
 
-        if (gameLogic.carName != null)
-        {
-            elimText.text = gameLogic.carName + " eliminated";
-            StopCoroutine(sec2());
-            StartCoroutine(sec2());
-        }
+            if (gameLogic.carName != null)
+            {
+                elimText.text = gameLogic.carName + " eliminated";
+                StopCoroutine(sec2());
+                StartCoroutine(sec2());
+            }
 
-        if (gameLogic.isTimeMode)
-        {
-            if(cars.Count == 1 && playerpos == 1)
+            if (gameLogic.isTimeMode)
             {
-                WinScreen();
-                Time.timeScale = 0;
-            }
-            else if (!gameLogic.won)
-            {
-                LoseScreen();
-            }
-        }
-        else
-        {
-            if (player_wps.currentLap > lapCount)
-            {
-                if (gameLogic.getFirstCar() == "Player")
+                if (cars.Count == 1 && playerpos == 1)
                 {
                     WinScreen();
-                    //Debug.Log("YOU WIN");
                 }
-                else {
-                    //Debug.Log("YOU LOSE");
-
+                else if (!gameLogic.won)
+                {
                     LoseScreen();
+                }
+            }
+            else
+            {
+                if (player_wps.currentLap > lapCount)
+                {
+                    if (gameLogic.getFirstCar() == "Player")
+                    {
+                        WinScreen();
+                        Debug.Log("YOU WIN");
+                    }
+                    else
+                    {
+                        Debug.Log("YOU LOSE");
+                        LoseScreen();
+                    }
                 }
             }
         }
@@ -149,9 +157,11 @@ public class UIStuffScript : MonoBehaviour {
 
     void WinScreen()
     {
+        soundtrack.Stop();
+        winAudio.Play();
+        isOver = true;
         winImage.alpha = 1;
         won = true;
-        //winAudio.Play();
         Time.timeScale = 0;
     }
 
@@ -160,8 +170,10 @@ public class UIStuffScript : MonoBehaviour {
 
         if (!won)
         {
+            soundtrack.Stop();
+            loseAudio.Play();
+            isOver = true;
             loseImage.alpha = 1;
-            //loseAudio.Play();
         }
 
         Time.timeScale = 0;

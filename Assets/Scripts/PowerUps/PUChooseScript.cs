@@ -19,6 +19,7 @@ public class PUChooseScript : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
         //if (other.tag == "ActualVehicle" || other.tag == "Opponent") {
         if (other.tag == "ActualVehicle" || other.tag == "Opponent") {
+            other.GetComponent<PickUpOwnerScript>().pickAudio.Play();
 
             foreach (Transform child in other.transform) {
                 if (child.name == "backBanana(Clone)") {

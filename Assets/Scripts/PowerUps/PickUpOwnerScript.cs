@@ -22,6 +22,8 @@ public class PickUpOwnerScript : MonoBehaviour {
     public AudioSource boostAudio;
     public AudioSource bananaAudio;
     public AudioSource swapAudio;
+    public AudioSource pickAudio;
+    public AudioSource spinAudio;
 
 
     // Use this for initialization
