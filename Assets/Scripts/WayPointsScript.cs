@@ -49,7 +49,10 @@ public class WayPointsScript : MonoBehaviour {
         WallHits = 0;
         lapTime = 0;
         currentLap = 0;
-        lapCount = 3;
+        if (GL.isTimeMode)
+            lapCount = 10;
+        else
+            lapCount = 3;
     }
 
     void createLaps(int laps) {
