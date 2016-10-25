@@ -666,7 +666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Racers: {fileID: 330373695}
-  isTimeMode: 0
+  isTimeMode: 1
   won: 0
   start: 0
   carName: 
@@ -2018,6 +2018,9 @@ MonoBehaviour:
   PUimage: {fileID: 0}
   gameLogic: {fileID: 274708020}
   player_wps: {fileID: 1249913248}
+  loseAudio: {fileID: 0}
+  winAudio: {fileID: 0}
+  startAudio: {fileID: 0}
 --- !u!114 &493308683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2423,6 +2426,8 @@ MonoBehaviour:
   jumps: 0
   rb: {fileID: 606480298}
   turn: {fileID: 1997347090}
+  spinning: 0
+  anim: {fileID: 0}
 --- !u!114 &606480295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3966,6 +3971,8 @@ MonoBehaviour:
   jumps: 0
   rb: {fileID: 1652757344}
   turn: {fileID: 1342883482}
+  spinning: 0
+  anim: {fileID: 0}
 --- !u!114 &1652757341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4694,6 +4701,8 @@ MonoBehaviour:
   jumps: 0
   rb: {fileID: 2017907968}
   turn: {fileID: 965342842}
+  spinning: 0
+  anim: {fileID: 0}
 --- !u!114 &2017907965
 MonoBehaviour:
   m_ObjectHideFlags: 0
