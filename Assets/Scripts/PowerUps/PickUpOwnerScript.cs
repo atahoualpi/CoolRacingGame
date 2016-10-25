@@ -124,6 +124,23 @@ public class PickUpOwnerScript : MonoBehaviour {
             WayPointsScript thisCarWPS = GetComponent<WayPointsScript>();
             WayPointsScript oppCarWPS = currOpp.GetComponent<WayPointsScript>();
 
+            int baseThis = (thisCarWPS.currentWayPoint - 1) % thisCarWPS.lapLength;
+            int baseOpp  = oppCarWPS.currentWayPoint % oppCarWPS.lapLength;
+
+            Debug.Log("THIS " + baseThis + " THAT " + baseOpp);
+            if (Mathf.Abs(baseThis - baseOpp) > 10f) {
+                if(baseThis < baseOpp) {
+                    thisCarWPS.currentLap--;
+                    oppCarWPS.currentLap++;
+                    Debug.Log("SWITCHD1");
+                }
+                else {
+                    thisCarWPS.currentLap++;
+                    oppCarWPS.currentLap--;
+                    Debug.Log("SWITCHD2");
+                }
+            }
+
             int tempInt = oppCarWPS.currentWayPoint;
             oppCarWPS.currentWayPoint = thisCarWPS.currentWayPoint;
             thisCarWPS.currentWayPoint = tempInt;

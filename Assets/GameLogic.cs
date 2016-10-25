@@ -145,7 +145,7 @@ public class GameLogic : MonoBehaviour {
     }
 
     public void addDoneCar(String c) {
-        Debug.Log(c);
+        //Debug.Log(c);
         doneCars.Add(c);
     }
 

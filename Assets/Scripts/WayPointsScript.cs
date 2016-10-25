@@ -15,6 +15,7 @@ public class WayPointsScript : MonoBehaviour {
     public Vector3 targetWayPoint;
     public GameLogic GL;
     public UIStuffScript UI;
+    public Rigidbody rb;
 
 
 
@@ -48,7 +49,7 @@ public class WayPointsScript : MonoBehaviour {
         WallHits = 0;
         lapTime = 0;
         currentLap = 0;
-        lapCount = 1;
+        lapCount = 3;
     }
 
     void createLaps(int laps) {
@@ -99,7 +100,7 @@ public class WayPointsScript : MonoBehaviour {
             angle2 = angle1;
         float distToTarget = Vector3.Distance(transform.position, targetWayPoint);
         //Debug.Log(angle1);
-        if (distToTarget > distVar) {
+        if (distToTarget > distVar || rb.velocity.magnitude < 1) {
             //Debug.Log("not in dist");
             //moveScript.setVel(1 - (angle1 / 90), angle1 / 90);      
             moveScript.setVel(1, (angle1 / 90));
@@ -156,7 +157,7 @@ public class WayPointsScript : MonoBehaviour {
             //stuckTime = 0;
         }
         else {
-            Debug.Log("You reached the goal!?!?");
+            //Debug.Log("You reached the goal!?!?");
         }
     }
 

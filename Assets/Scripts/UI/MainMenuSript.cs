@@ -28,7 +28,12 @@ public class MainMenuSript : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        
+        if(Input.GetAxis("Horizontal") == -1) {
+            ChooseBtn(1);
+        }
+        else if (Input.GetAxis("Horizontal") == 1) {
+            ChooseBtn(2);
+        }
 
     }
 

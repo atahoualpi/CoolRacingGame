@@ -103,7 +103,7 @@ public class OpponentMovement : MonoBehaviour {
     }
     IEnumerator holdControls() {
         spinning = false;
-        Debug.Log("dwadwa");
+        //Debug.Log("dwadwa");
         //yield return new WaitUntil(anim.GetCurrentAnimatorStateInfo(0).IsName("CanMove"));
         //yield return new WaitUntil(System.Func < T, anim.GetCurrentAnimatorStateInfo(0).IsName("CanMove") >);
         yield return new WaitForSeconds(2.50001f);

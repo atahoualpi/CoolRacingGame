@@ -115,10 +115,10 @@ public class UIStuffScript : MonoBehaviour {
                 if (gameLogic.getFirstCar() == "Player")
                 {
                     WinScreen();
-                    Debug.Log("YOU WIN");
+                    //Debug.Log("YOU WIN");
                 }
                 else {
-                    Debug.Log("YOU LOSE");
+                    //Debug.Log("YOU LOSE");
 
                     LoseScreen();
                 }
@@ -151,7 +151,7 @@ public class UIStuffScript : MonoBehaviour {
     {
         winImage.alpha = 1;
         won = true;
-        winAudio.Play();
+        //winAudio.Play();
         Time.timeScale = 0;
     }
 
@@ -161,7 +161,7 @@ public class UIStuffScript : MonoBehaviour {
         if (!won)
         {
             loseImage.alpha = 1;
-            loseAudio.Play();
+            //loseAudio.Play();
         }
 
         Time.timeScale = 0;

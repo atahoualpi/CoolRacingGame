@@ -146,7 +146,7 @@ public class RacerScript : MonoBehaviour {
 
 
         }
-        if (Input.GetKey(KeyCode.M)) {
+        if (Input.GetKey(KeyCode.M) || Input.GetAxis("Fire3") == 1) {
             cameraObject.transform.localPosition = new Vector3(0, 3.509f, 16.2f);
             cameraObject.transform.localRotation = new Quaternion(0, 180, 0,0);
         }

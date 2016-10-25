@@ -21,4 +21,10 @@ public class LevelChangeScript : MonoBehaviour {
     {
         Application.Quit();
     }
+
+    void Update() {
+        if (Input.GetButtonDown("Fire2")) {
+            LoadAgainLevelButton(2);
+        }
+    }
 }
