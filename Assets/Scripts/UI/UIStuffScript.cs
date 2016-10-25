@@ -151,7 +151,7 @@ public class UIStuffScript : MonoBehaviour
                 }
                 else if (!gameLogic.won)
                 {
-                    LoseScreen();
+                        LoseScreen();
                 }
             }
             else
