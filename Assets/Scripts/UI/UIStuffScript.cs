@@ -4,7 +4,8 @@ using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
 
-public class UIStuffScript : MonoBehaviour {
+public class UIStuffScript : MonoBehaviour
+{
 
     private Text lapText;
     private Text rankText;
@@ -27,9 +28,19 @@ public class UIStuffScript : MonoBehaviour {
     public AudioSource startAudio;
     public AudioSource soundtrack;
     bool isOver;
+    bool isPaused;
+    private int buttonSelector;
+
+    private Button play;
+    private Button menu;
+    private Button selected;
+    Color highlighted;
+    Color gr_btn;
+    ColorBlock tempCol;
 
     // Use this for initialization
-    void Awake () {
+    void Awake()
+    {
         PUimage = transform.FindChild("PowerUpImage").GetComponent<Image>();
         Time.timeScale = 1;
     }
@@ -38,13 +49,18 @@ public class UIStuffScript : MonoBehaviour {
     {
         isOver = false;
         won = false;
+        isPaused = false;
+        buttonSelector = 1;
+        highlighted = new Color(0.7f, 0.96f, 0.62f, 1f);
+        gr_btn = new Color(0.24f, 0.42f, 0.18f, 1f);
+
         lapCount = player_wps.lapCount;
         timeText = transform.FindChild("TimeText").GetComponent<Text>();
         rankText = transform.FindChild("RankText").GetComponent<Text>();
         lapText = transform.FindChild("LapText").GetComponent<Text>();
         goText = transform.FindChild("GOText").GetComponent<Text>();
         elimText = transform.FindChild("EliminationText").GetComponent<Text>();
-        if(!gameLogic.isTimeMode)
+        if (!gameLogic.isTimeMode)
             lastLapText = transform.FindChild("FinalLapText").GetComponent<Text>();
 
         winImage = transform.FindChild("WinImage").GetComponent<CanvasGroup>();
@@ -59,7 +75,7 @@ public class UIStuffScript : MonoBehaviour {
     {
         yield return new WaitForSeconds(1.5f);
         goText.text = "";
-        if(!gameLogic.isTimeMode)
+        if (!gameLogic.isTimeMode)
             lastLapText.gameObject.SetActive(false);
     }
 
@@ -71,9 +87,26 @@ public class UIStuffScript : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
         if (!isOver)
         {
+            if (Input.GetKeyDown("p"))
+            {
+                isPaused = !isPaused;
+                if (!isPaused)
+                {
+                    Time.timeScale = 0;
+                    transform.FindChild("PauseImage").gameObject.SetActive(true);
+                    soundtrack.Pause();
+                }
+                else
+                {
+                    transform.FindChild("PauseImage").gameObject.SetActive(false);
+                    Time.timeScale = 1;
+                    soundtrack.Play();
+                }
+            }
             if (!gameLogic.start)
             {
                 time -= Time.deltaTime;
@@ -100,7 +133,7 @@ public class UIStuffScript : MonoBehaviour {
                 }
             }
             rankText.text = playerpos + "/" + cars.Count;
-            
+
 
             if (gameLogic.carName != null)
             {
@@ -144,6 +177,8 @@ public class UIStuffScript : MonoBehaviour {
                     }
                 }
             }
+
+
         }
     }
 
@@ -164,7 +199,8 @@ public class UIStuffScript : MonoBehaviour {
         return time;
     }
 
-    public void updateLap(int curLap) {
+    public void updateLap(int curLap)
+    {
         lapText.text = "Lap: " + curLap + "/" + lapCount;
     }
 
@@ -175,7 +211,32 @@ public class UIStuffScript : MonoBehaviour {
         isOver = true;
         winImage.alpha = 1;
         won = true;
+        play = transform.FindChild("WinImage").transform.FindChild("PlayAgainButton").GetComponent<Button>();
+        menu = transform.FindChild("WinImage").transform.FindChild("GoMenuButton").GetComponent<Button>();
         Time.timeScale = 0;
+        Highlight(play);
+        selected = play;
+        if (Input.GetKeyDown("up"))
+        {
+           
+                Highlight(play);
+                Grey(menu);
+                selected = play;
+            
+        }
+        else if (Input.GetKeyDown("down"))
+        {
+            
+                Highlight(menu);
+                Grey(play);
+                selected = menu;
+            
+        }
+        if (Input.GetKeyDown("return") || Input.GetButtonDown("Fire2"))
+        {
+            selected.onClick.Invoke();
+
+        }
     }
 
     void LoseScreen()
@@ -187,8 +248,47 @@ public class UIStuffScript : MonoBehaviour {
             loseAudio.Play();
             isOver = true;
             loseImage.alpha = 1;
+            play = transform.FindChild("LoseImage").transform.FindChild("TryAgainButton").GetComponent<Button>();
+            menu = transform.FindChild("LoseImage").transform.FindChild("GoMenuButton").GetComponent<Button>();
+            Highlight(play);
+            selected = play;
+            if (Input.GetKeyDown("up"))
+            {
+                Debug.Log("up");
+                    Highlight(play);
+                    Grey(menu);
+                    selected = play;
+                
+            }
+            else if (Input.GetKeyDown("down"))
+            {
+                Debug.Log("down");
+                    Highlight(menu);
+                    Grey(play);
+                    selected = menu;
+                
+            }
+            if (Input.GetKeyDown("return") || Input.GetButtonDown("Fire2"))
+            {
+                selected.onClick.Invoke();
+
+            }
         }
 
         Time.timeScale = 0;
+    }
+
+    void Grey(Button btn)
+    {
+        tempCol = btn.colors;
+        tempCol.normalColor = gr_btn;
+        btn.colors = tempCol;
+    }
+
+    void Highlight(Button btn)
+    {
+        tempCol = btn.colors;
+        tempCol.normalColor = highlighted;
+        btn.colors = tempCol;
     }
 }
