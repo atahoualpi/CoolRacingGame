@@ -11,6 +11,7 @@ public class UIStuffScript : MonoBehaviour {
     private Text timeText;
     private Text goText;
     private Text elimText;
+    private Text lastLapText;
 
     public Image PUimage;
     public GameLogic gameLogic;
@@ -43,6 +44,8 @@ public class UIStuffScript : MonoBehaviour {
         lapText = transform.FindChild("LapText").GetComponent<Text>();
         goText = transform.FindChild("GOText").GetComponent<Text>();
         elimText = transform.FindChild("EliminationText").GetComponent<Text>();
+        if(!gameLogic.isTimeMode)
+            lastLapText = transform.FindChild("FinalLapText").GetComponent<Text>();
 
         winImage = transform.FindChild("WinImage").GetComponent<CanvasGroup>();
         loseImage = transform.FindChild("LoseImage").GetComponent<CanvasGroup>();
@@ -56,6 +59,8 @@ public class UIStuffScript : MonoBehaviour {
     {
         yield return new WaitForSeconds(1.5f);
         goText.text = "";
+        if(!gameLogic.isTimeMode)
+            lastLapText.gameObject.SetActive(false);
     }
 
     private IEnumerator sec2()
@@ -95,7 +100,7 @@ public class UIStuffScript : MonoBehaviour {
                 }
             }
             rankText.text = playerpos + "/" + cars.Count;
-            lapText.text = "Lap: " + player_wps.currentLap + "/" + lapCount;
+            
 
             if (gameLogic.carName != null)
             {
@@ -106,6 +111,7 @@ public class UIStuffScript : MonoBehaviour {
 
             if (gameLogic.isTimeMode)
             {
+
                 if (cars.Count == 1 && playerpos == 1)
                 {
                     WinScreen();
@@ -117,6 +123,13 @@ public class UIStuffScript : MonoBehaviour {
             }
             else
             {
+                //lapText.text = "Lap: " + player_wps.currentLap + "/" + lapCount;
+
+                if (player_wps.currentLap == lapCount)
+                {
+                    lastLapText.gameObject.SetActive(true);
+                    StartCoroutine(sec1point5());
+                }
                 if (player_wps.currentLap > lapCount)
                 {
                     if (gameLogic.getFirstCar() == "Player")

@@ -17,7 +17,7 @@ public class WayPointsScript : MonoBehaviour {
     public UIStuffScript UI;
     public Rigidbody rb;
 
-
+    public AudioSource finalLap;
 
     //RANDOM VARIABLE AI
     private float speedVar;
@@ -142,7 +142,15 @@ public class WayPointsScript : MonoBehaviour {
 
         }
         if (!isOpponent) {
-            UI.updateLap(currentLap);
+            if (!GL.isTimeMode)
+            {
+                UI.updateLap(currentLap);
+                if (currentLap == lapCount)
+                {
+                    finalLap.Play();
+                }
+            }
+             
         }
         
         //distVar = Random.Range(6f, 7f);
