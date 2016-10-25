@@ -124,7 +124,7 @@ RectTransform:
   - {fileID: 1539835836}
   - {fileID: 312712142}
   m_Father: {fileID: 493308686}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -287,7 +287,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 493308686}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -740,7 +740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Racers: {fileID: 330373695}
-  isTimeMode: 1
+  isTimeMode: 0
   won: 0
   start: 0
   carName: 
@@ -1153,7 +1153,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 262215344}
-        m_MethodName: LoadLevelButton
+        m_MethodName: LoadAgainLevelButton
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1556,7 +1556,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 262215344}
-        m_MethodName: LoadLevelButton
+        m_MethodName: LoadAgainLevelButton
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2171,6 +2171,7 @@ RectTransform:
   - {fileID: 2122777332}
   - {fileID: 257371464}
   - {fileID: 339281317}
+  - {fileID: 1869973871}
   - {fileID: 90187780}
   - {fileID: 57411677}
   - {fileID: 1949276925}
@@ -2735,6 +2736,7 @@ MonoBehaviour:
   GL: {fileID: 274708020}
   UI: {fileID: 0}
   rb: {fileID: 606480298}
+  finalLap: {fileID: 0}
   distVar: 5.8
   rotVar: 5.4
   lapCount: 0
@@ -2828,7 +2830,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 248295b922d941a43a7de885b7cc909c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6724e44400e3e434495a9435f03b79df, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
@@ -2917,7 +2919,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1adb277cfc2e2b5498505aac6ebf37e9, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 912e42ae57d2ae44db4e2e6036dbe7d8, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
@@ -3538,7 +3540,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 262215344}
-        m_MethodName: LoadLevelButton
+        m_MethodName: LoadAgainLevelButton
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4744,7 +4746,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 262215344}
-        m_MethodName: LoadLevelButton
+        m_MethodName: LoadAgainLevelButton
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4938,6 +4940,7 @@ MonoBehaviour:
   GL: {fileID: 274708020}
   UI: {fileID: 0}
   rb: {fileID: 1652757344}
+  finalLap: {fileID: 0}
   distVar: 6
   rotVar: 5.23
   lapCount: 0
@@ -5031,7 +5034,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 248295b922d941a43a7de885b7cc909c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6724e44400e3e434495a9435f03b79df, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
@@ -5120,7 +5123,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1adb277cfc2e2b5498505aac6ebf37e9, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 912e42ae57d2ae44db4e2e6036dbe7d8, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
@@ -5786,6 +5789,80 @@ RectTransform:
   m_AnchoredPosition: {x: 400, y: 365.11627}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1869973870
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1869973871}
+  - 222: {fileID: 1869973873}
+  - 114: {fileID: 1869973872}
+  m_Layer: 5
+  m_Name: FinalLapText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1869973871
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1869973870}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.86, y: 0.86, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 493308686}
+  m_RootOrder: 6
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 39.71}
+  m_SizeDelta: {x: 300, y: 60}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1869973872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1869973870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.09407438, g: 0.85294116, b: 0.85294116, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 3a2e3882deef2134c994bde6008ae923, type: 3}
+    m_FontSize: 25
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: FINAL LAP
+--- !u!222 &1869973873
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1869973870}
 --- !u!1 &1941540203
 GameObject:
   m_ObjectHideFlags: 0
@@ -5906,7 +5983,7 @@ RectTransform:
   - {fileID: 890207849}
   - {fileID: 412811606}
   m_Father: {fileID: 493308686}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -6217,6 +6294,7 @@ MonoBehaviour:
   GL: {fileID: 274708020}
   UI: {fileID: 0}
   rb: {fileID: 2017907968}
+  finalLap: {fileID: 0}
   distVar: 5.6
   rotVar: 4.7
   lapCount: 0
@@ -6310,7 +6388,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 248295b922d941a43a7de885b7cc909c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6724e44400e3e434495a9435f03b79df, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
@@ -6399,7 +6477,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1adb277cfc2e2b5498505aac6ebf37e9, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 912e42ae57d2ae44db4e2e6036dbe7d8, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1

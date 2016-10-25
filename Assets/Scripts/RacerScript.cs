@@ -281,8 +281,7 @@ public class RacerScript : MonoBehaviour {
 
             }
 
-            if ((Input.GetKeyDown("space") || Input.GetButtonDown("Fire2")))
-                SceneManager.LoadScene("DefaultScene");
+          
         }
 
 

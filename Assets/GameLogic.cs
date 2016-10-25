@@ -36,6 +36,7 @@ public class GameLogic : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        Cursor.visible = false;
         won = true;
         StartCoroutine(countdown());
         elimAudio = GetComponent<AudioSource>();
